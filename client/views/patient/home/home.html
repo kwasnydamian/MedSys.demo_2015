@@ -1,0 +1,59 @@
+<template name="home">
+<div class="container" id="main">
+    {{#if isInRole 'admin'}}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                        <div class="panel-heading">Umówione wizyty</div>
+                        <div class="panel-body">
+                            ss
+                        </div>
+                    </div></div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                        <div class="panel-heading">Ostatnie wizyty</div>
+                        <div class="panel-body">
+                            ss
+                        </div>
+                    </div></div>
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                        <div class="panel-heading">Wyniki badań</div>
+                        <div class="panel-body">
+                            ss
+                        </div>
+                    </div></div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Terminarz</div>
+                        <div class="panel-body">
+                            list<br />
+                            list<br />
+                            list<br />
+                            list<br />
+                            list<br />
+                            list<br />
+                            list<br />
+                            list<br />
+                            list<br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if isInRole 'patient'}}
+        Jesteś pacjentem
+    {{/if}}
+    {{#if isInRole 'doctor'}}
+        Jesteś lekarzem
+    {{/if}}
+</div>
+</template>
