@@ -70,14 +70,14 @@
       </file>
       <file leaf-file-name="register_visit.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views/patient/register_visit/register_visit.html">
-        </entry>
-      </file>
-          <provider selected="true" editor-type-id="text-editor">
+        <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
               <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
               <folding />
             </state>
           </provider>
+        </entry>
+      </file>
       <file leaf-file-name="fixtures.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/fixtures.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -748,7 +748,7 @@
           <folding />
            </state>
       </provider>
-    </entry
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/admin/admin_panel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="180">
