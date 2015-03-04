@@ -100,7 +100,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registerVisit.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="register_visit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views/patient/register_visit/registerVisit.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
