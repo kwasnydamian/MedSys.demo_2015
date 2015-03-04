@@ -1,27 +1,32 @@
 <template name="home">
-<div class="container" id="main">
     {{#if isInRole 'admin'}}
         <div class="row">
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="panel panel-primary">
-                        <div class="panel-heading">Umówione wizyty</div>
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Umówione wizyty
+                        </div>
                         <div class="panel-body">
-                            ss
+                            <div class="pull-right btn-group" role="group" aria-label="...">
+                                <a href="{{pathFor 'registerVisit' }}" class="button btn btn-primary">Zarejestruj wizytę</a>
+                            </div>
+                            jeden<br />
+                            dwa<br />
                         </div>
                     </div></div>
                     </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="panel panel-primary">
+                        <div class="panel panel-default">
                         <div class="panel-heading">Ostatnie wizyty</div>
                         <div class="panel-body">
                             ss
                         </div>
                     </div></div>
                     <div class="col-md-6">
-                        <div class="panel panel-primary">
+                        <div class="panel panel-default">
                         <div class="panel-heading">Wyniki badań</div>
                         <div class="panel-body">
                             ss
@@ -31,7 +36,7 @@
             </div>
             <div class="col-md-8">
                 <div class="row">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-default">
                         <div class="panel-heading">Terminarz</div>
                         <div class="panel-body">
                             list<br />
@@ -55,5 +60,4 @@
     {{#if isInRole 'doctor'}}
         Jesteś lekarzem
     {{/if}}
-</div>
 </template>
