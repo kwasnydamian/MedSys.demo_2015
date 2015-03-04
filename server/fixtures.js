@@ -3,30 +3,37 @@
  */
 
 if(Meteor.users.find().count()===0){
-    var user = Meteor.users.insert({
-        profile: {Imie:"Administrator", Nazwisko:"główny"},
-        username: "admin",
-        services: {password:{bcrypt:"$2a$10$SIq.6patpDF.Fcm6Tu1YQOUJzWllhBdATwOqu4zaiHozIvdgrNFlC"}}
-    })
-
     Roles.createRole('admin');
     Roles.createRole('doctor');
     Roles.createRole('patient');
 
+    var user =Accounts.createUser({
+        'username': 'admin',
+        'email': 'admin@test.com',
+        'password': 'admin1',
+        'firstName':'Admin',
+        'lastName': 'Admin'
+    });
     Roles.setUserRoles(user,'admin');
 
-    Accounts.createUser({
+    var doctor = Accounts.createUser({
         'username': 'damian',
         'email': 'damian@test.com',
         'password': 'piesek',
         'firstName':'Damian',
-        'lastName': 'Nowak'
+        'lastName': 'Nowak',
+        'Name':'Nejm',
+        'id_specjalnosc': 'specjalnosc1'
     });
-    Accounts.createUser({
+    Roles.setUserRoles(doctor,'doctor');
+
+    var patient = Accounts.createUser({
         'username': 'pawel',
         'email': 'pawel@test.com',
         'password': 'piesek',
         'firstName':'Pawel',
         'lastName': 'Kowalski'
     });
+    Roles.setUserRoles(patient,'patient');
+
 }
