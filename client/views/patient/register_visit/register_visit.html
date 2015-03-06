@@ -1,3 +1,51 @@
 <template name="registerVisit">
-
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Umawianie wizyty</h4><br>
+            <form>
+                <div class="btn-group" role="group" aria-label="addVisitLabel">
+                    <!--<button id="submit" class="button btn btn-primary">Zapisz</button>-->
+                    <button id="dodajWizyte" class="button btn btn-primary">Dodaj wizytę</button>
+                    <button id="konsultacja" class="button btn btn-primary">Konsultacja</button>
+                </div>
+                <br /><br />
+                <div class="container row">
+                    <div class="input-group">
+                        <label for="przychodnie">Przychodnia</label><br />
+                        <select class="form-control" name="przychodnie" id="przychodnie">
+                            <option value="0">--Wybierz przychodnię--</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="lekarze">Specjalność</label><br />
+                        <select class="form-control" disabled="disabled" name="specjalnosci" id="specjalnosci">
+                            <option value="0">--Wybierz specjalność--</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="lekarze">Lekarz</label><br />
+                        <select class="form-control" disabled="disabled" name="lekarze" id="lekarze">
+                            <option value="0">--Wybierz lekarza--</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="id_user" value="{{user_id}}">
+            </form>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Terminarz lekarza
+                </div>
+                <div class="panel-body">
+                  <div id="calendar">
+                    {{> terminarz}}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="terminarz">
+    {{rendered}}
 </template>
