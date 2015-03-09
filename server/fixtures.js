@@ -9,17 +9,39 @@ if(Meteor.users.find().count()===0){
     Roles.createRole('patient');
 
     // inicjalizacja specjalności
-    var kard = Specjalnosci.insert({
+    var kardiolog = Specjalnosci.insert({
         'nazwa':'kardiologia'
     });
-    var neur = Specjalnosci.insert({
+    var neurolog = Specjalnosci.insert({
         'nazwa':'neurologia'
     });
-    var prokt = Specjalnosci.insert({
+    var proktolog = Specjalnosci.insert({
         'nazwa':'proktologia'
     });
 
-    // inicjalizacja 4 użytkowników
+    //inicjalicja przychodni
+    var medicor = Przychodnie.insert({
+        'nazwa':'Medicor Nowy Sącz',
+        'miejscowosc':'Kraków',
+        'adres':'Zielona 27, 34-232'
+    });
+    var wojskowy = Przychodnie.insert({
+        'nazwa':'V Wojskowy Szpital Kliniczny w Krakowie',
+        'miejscowosc':'Limanowa',
+        'adres':'Niebieska 273, 34-222'
+    });
+    var prywatnaKlinika = Przychodnie.insert({
+        'nazwa':'Klinika prywatna Maciej Kowalski',
+        'miejscowosc':'Tarnów',
+        'adres':'Czerwona 247, 34-333'
+    });
+    var klinikaKrakowska = Przychodnie.insert({
+        'nazwa':'Klinika krakowska ',
+        'miejscowosc':'Kraków',
+        'adres':'Żółta 4, 34-222'
+    });
+
+    // inicjalizacja użytkowników
     var user =Accounts.createUser({
         'username': 'admin',
         'email': 'admin@test.com',
@@ -34,7 +56,7 @@ if(Meteor.users.find().count()===0){
     });
     Roles.setUserRoles(user,'admin');
 
-    var doctor = Accounts.createUser({
+    var damian = Accounts.createUser({
         'username': 'damian',
         'email': 'damian@test.com',
         'password': 'piesek',
@@ -43,12 +65,12 @@ if(Meteor.users.find().count()===0){
             'lastName': "Kot",
             'isDoctor':true,
             'isPatient':false,
-            'id_specjalnosc': prokt
+            'id_specjalnosc': proktolog,
+            'id_klinika': medicor
         }
     });
-    Roles.setUserRoles(doctor,'doctor');
-
-    var doctor2 = Accounts.createUser({
+    Roles.setUserRoles(damian,'doctor');
+    var dorian = Accounts.createUser({
         'username': 'dorian',
         'email': 'dorian@test.com',
         'password': 'piesek',
@@ -57,12 +79,97 @@ if(Meteor.users.find().count()===0){
             'lastName': "Pies",
             'isDoctor':true,
             'isPatient':false,
-            'id_specjalnosc': neur
+            'id_specjalnosc': neurolog,
+            'id_klinika': medicor
         }
     });
-    Roles.setUserRoles(doctor2,'doctor');
+    Roles.setUserRoles(dorian,'doctor');
+    var robert = Accounts.createUser({
+        'username': 'robert',
+        'email': 'robert@test.com',
+        'password': 'piesek',
+        'profile': {
+            'firstName': "Robert",
+            'lastName': "Jaśkiewicz",
+            'isDoctor':true,
+            'isPatient':false,
+            'id_specjalnosc': neurolog,
+            'id_klinika':wojskowy
+        }
+    });
+    Roles.setUserRoles(robert,'doctor');
+    var marian = Accounts.createUser({
+        'username': 'marian',
+        'email': 'marian@test.com',
+        'password': 'piesek',
+        'profile': {
+            'firstName': "Marian",
+            'lastName': "Błażusiak",
+            'isDoctor':true,
+            'isPatient':false,
+            'id_specjalnosc': neurolog,
+            'id_klinika':wojskowy
+        }
+    });
+    Roles.setUserRoles(marian,'doctor');
+    var teresa = Accounts.createUser({
+        'username': 'teresa',
+        'email': 'teresa@test.com',
+        'password': 'piesek',
+        'profile': {
+            'firstName': "Teresa",
+            'lastName': "Zakrzewska",
+            'isDoctor':true,
+            'isPatient':false,
+            'id_specjalnosc': kardiolog,
+            'id_klinika': prywatnaKlinika
+        }
+    });
+    Roles.setUserRoles(teresa,'doctor');
+    var krystyna = Accounts.createUser({
+        'username': 'krystyna',
+        'email': 'krystyna@test.com',
+        'password': 'piesek',
+        'profile': {
+            'firstName': "Krystyna",
+            'lastName': "Pies",
+            'isDoctor':true,
+            'isPatient':false,
+            'id_specjalnosc': kardiolog,
+            'id_klinika': prywatnaKlinika
+        }
+    });
+    Roles.setUserRoles(krystyna,'doctor');
+    var tomasz = Accounts.createUser({
+        'username': 'tomasz',
+        'email': 'tomasz@test.com',
+        'password': 'piesek',
+        'profile': {
+            'firstName': "Tomasz",
+            'lastName': "Jarosz",
+            'isDoctor':true,
+            'isPatient':false,
+            'id_specjalnosc': proktolog,
+            'id_klinika': klinikaKrakowska
+        }
+    });
+    Roles.setUserRoles(tomasz,'doctor');
+    var adam = Accounts.createUser({
+        'username': 'adam',
+        'email': 'adam@test.com',
+        'password': 'piesek',
+        'profile': {
+            'firstName': "Adam",
+            'lastName': "Skowron",
+            'isDoctor':true,
+            'isPatient':false,
+            'id_specjalnosc': proktolog,
+            'id_klinika': klinikaKrakowska
+        }
+    });
+    Roles.setUserRoles(adam,'doctor');
 
-    var patient = Accounts.createUser({
+    var pawel = Accounts.createUser({
         'username': 'pawel',
         'email': 'pawel@test.com',
         'password': 'piesek',
@@ -73,24 +180,7 @@ if(Meteor.users.find().count()===0){
             'isPatient':true
         }
     });
-    Roles.setUserRoles(patient,'patient');
-
-    //inicjalicja przychodni
-    Przychodnie.insert({
-        'nazwa':'Medistat',
-        'miejscowosc':'Kraków',
-        'adres':'Zielona 27, 34-232'
-    });
-    Przychodnie.insert({
-        'nazwa':'Medikuk',
-        'miejscowosc':'Limanowa',
-        'adres':'Niebieska 273, 34-222'
-    });
-    Przychodnie.insert({
-        'nazwa':'Medikok',
-        'miejscowosc':'Tarnów',
-        'adres':'Czerwona 247, 34-333'
-    });
+    Roles.setUserRoles(pawel,'patient');
 
     //inicjalizacja województw
     Wojewodztwa.insert({
@@ -106,5 +196,15 @@ if(Meteor.users.find().count()===0){
     });
     Powiaty.insert({
         'nazwa':'nowosądecki'
+    });
+
+    //inicjalizacja wizyt
+    Wizyty.insert({
+        'id_pacjent':pawel,
+        'id_lekarz': damian,
+        'start':'2015-03-09T9:00:00',
+        'end':'2015-03-09T11:00:00',
+        'title':'wizyta kontrolna',
+        'description':'Wykonanie podstawowych badań'
     });
 }

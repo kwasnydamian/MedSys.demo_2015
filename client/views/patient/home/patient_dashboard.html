@@ -4,13 +4,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading clearfix">
                             Umówione wizyty
+                            <div class="pull-right">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                        Opcje
+                                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation"><a href="{{pathFor 'registerVisit' }}" role="menuitem" tabindex="-1">Zarejestruj wizytę</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-body">
-                            <div class="pull-right btn-group" role="group" aria-label="...">
-                                <a href="{{pathFor 'registerVisit' }}" class="button btn btn-primary">Zarejestruj wizytę</a>
-                            </div>
                             jeden<br />
                             dwa<br />
                         </div>

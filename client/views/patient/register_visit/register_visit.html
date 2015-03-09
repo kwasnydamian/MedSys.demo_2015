@@ -1,36 +1,34 @@
 <template name="registerVisit">
     <div class="row">
         <div class="col-md-4">
-            <h4>Umawianie wizyty</h4><br>
-            <form>
-                <div class="btn-group" role="group" aria-label="addVisitLabel">
-                    <!--<button id="submit" class="button btn btn-primary">Zapisz</button>-->
-                    <button id="dodajWizyte" class="button btn btn-primary">Dodaj wizytę</button>
-                    <button id="konsultacja" class="button btn btn-primary">Konsultacja</button>
-                </div>
-                <br /><br />
                 <div class="container row">
-                    <div class="input-group">
+                    <div class="input-group col-xs-12">
                         <label for="przychodnie">Przychodnia</label><br />
-                        <select class="form-control" name="przychodnie" id="przychodnie">
+                        <select class="form-control input-sm" name="przychodnie" id="przychodnie">
                             <option value="0">--Wybierz przychodnię--</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <label for="lekarze">Specjalność</label><br />
-                        <select class="form-control" disabled="disabled" name="specjalnosci" id="specjalnosci">
+                    <div class="input-group col-xs-12">
+                        <label for="specjalnosci">Specjalność</label><br />
+                        <select class="form-control input-sm" disabled="disabled" name="specjalnosci" id="specjalnosci">
                             <option value="0">--Wybierz specjalność--</option>
                         </select>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group col-xs-12">
                         <label for="lekarze">Lekarz</label><br />
-                        <select class="form-control" disabled="disabled" name="lekarze" id="lekarze">
+                        <select class="form-control input-sm" disabled="disabled" name="lekarze" id="lekarze">
                             <option value="0">--Wybierz lekarza--</option>
                         </select>
                     </div>
                 </div>
                 <input type="hidden" name="id_user" value="{{user_id}}">
-            </form>
+            <br>
+            <h4>Umawianie wizyty</h4>
+            <div class="btn-group" role="group" aria-label="addVisitLabel">
+                <button id="konsultacja" class="button btn btn-primary">Konsultacja</button>
+                <a href="#" id="wizytaButton" class="btn btn-primary" data-toggle="modal" >Dodaj wizytę</a>
+            </div>
+
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
@@ -45,7 +43,5 @@
             </div>
         </div>
     </div>
-</template>
-<template name="terminarz">
-    {{rendered}}
+    {{> addWizytaModal}}
 </template>

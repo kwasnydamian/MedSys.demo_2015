@@ -10,19 +10,34 @@ Template.registerVisit.helpers({
 Template.registerVisit.events({
      'change #przychodnie': function(){
          var specjalnosci = document.getElementById("specjalnosci");
+         var lekarze = document.getElementById("lekarze");
          specjalnosci.disabled="";
+         specjalnosci.value = 0;
+         lekarze.disabled="disabled";
+         lekarze.value = 0;
      },
      'change #specjalnosci': function(){
          var lekarze = document.getElementById("lekarze");
          var specjalnosc = document.getElementById("specjalnosci").value;
+         var przychodnie = document.getElementById("przychodnie").value;
          deleteDropdownOptions(lekarze);
-         Uzytkownicy.find({'profile.isDoctor':true, 'profile.id_specjalnosc':specjalnosc}).forEach(function(uzytkownik){
+         Uzytkownicy.find({'profile.isDoctor':true, 'profile.id_specjalnosc':specjalnosc
+             ,'profile.id_klinika':przychodnie}).forEach(function(uzytkownik){
              var option = document.createElement("option");
              option.text = uzytkownik.username;
              option.value = uzytkownik._id;
              lekarze.add(option,null);
          });
          lekarze.disabled="";
+     },
+     'click #wizytaButton':function(){
+        var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
+        if(czyWybranoLekarza){
+            $("#dodajWizyte").modal('show');
+        }
+        else{
+            AntiModals.alert("Wybierz lekarza");
+        }
      }
 });
 
@@ -65,44 +80,14 @@ deleteDropdownOptions = function(selector){
     for(i = selector.length; i>0; i--){
         selector.remove(i);
     }
-}
+};
 
-Template.terminarz.rendered = function(){
-    $('#calendar').fullCalendar({
-        header:{
-            left: 'prev,next today',
-            center: 'title',
-            right:'agendaWeek'
-        },
-        lang: 'es',
-        weekends:true,
-        defaultView: 'agendaWeek',
-        editable:true,
-        eventLimit:true,
-        dayClick: function(date, jsEvent, view){
-           // $(this).css('background-color', 'red');
-           //AntiModals.prompt("dodaj spotkanie");
-        },
-        eventRender:function(event,element){
-            element.click(function(){
-                AntiModals.alert("opis");
-            })
-        },
-        eventSources:[
-            {
-                events:[
-                    {
-                        id:999,
-                        title:'siema',
-                        start: '2015-03-06T08:00:00',
-                        end: '2015-03-06T12:00:00',
-                        description: 'aasa  aa afaa',
-                        allDay: false
-                    }
+sprawdzCzyWybranoLekarza = function(){
+    var flaga = false;
+    var lekarz = document.getElementById('lekarze').value;
+    if(lekarz!=0 && lekarz != "0" && lekarz != "undefined" && lekarz !=""){
+        flaga=true;
+    }
+    return flaga;
+};
 
-                ]
-            }
-        ],
-        eventStartEditable: true
-    })
-}
