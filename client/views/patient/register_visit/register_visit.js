@@ -38,7 +38,10 @@ Template.registerVisit.events({
         else{
             AntiModals.alert("Wybierz lekarza");
         }
-     }
+     },
+    'click #konsultacjaButton':function(){
+         document.getElementById("chat").classList.remove("hidden");
+    }
 });
 
 Template.registerVisit.rendered = function(){

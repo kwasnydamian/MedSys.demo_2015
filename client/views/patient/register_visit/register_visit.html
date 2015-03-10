@@ -1,6 +1,8 @@
 <template name="registerVisit">
     <div class="row">
         <div class="col-md-4">
+            <h4>Umawianie wizyty</h4><br>
+            <form>
                 <div class="container row">
                     <div class="input-group col-xs-12">
                         <label for="przychodnie">Przychodnia</label><br />
@@ -25,10 +27,14 @@
             <br>
             <h4>Umawianie wizyty</h4>
             <div class="btn-group" role="group" aria-label="addVisitLabel">
-                <button id="konsultacja" class="button btn btn-primary">Konsultacja</button>
+                <a href="#" id="konsultacjaButton" class="btn btn-primary" data-toggle="modal">Konsultacja</a>
                 <a href="#" id="wizytaButton" class="btn btn-primary" data-toggle="modal" >Dodaj wizytę</a>
             </div>
-
+            </form>
+            <br />
+            <div id="chat" class="hidden">
+                {{>client}}
+            </div>
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
@@ -44,4 +50,5 @@
         </div>
     </div>
     {{> addWizytaModal}}
+    {{> addKonsultacja}}
 </template>
