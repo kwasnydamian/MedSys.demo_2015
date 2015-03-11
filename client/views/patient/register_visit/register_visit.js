@@ -9,10 +9,16 @@ Template.registerVisit.helpers({
 
 Template.registerVisit.events({
      'change #przychodnie': function(){
+         var przychodnie = document.getElementById("przychodnie");
          var specjalnosci = document.getElementById("specjalnosci");
          var lekarze = document.getElementById("lekarze");
+
          specjalnosci.disabled="";
          specjalnosci.value = 0;
+         if(przychodnie.value==0){
+             specjalnosci.disabled="disabled";
+         }
+
          lekarze.disabled="disabled";
          lekarze.value = 0;
      },
@@ -45,8 +51,18 @@ Template.registerVisit.events({
 });
 
 Template.registerVisit.rendered = function(){
-    setPrzychodnie();
-    setSpecjalnosci();
+    var subscriptionPrzychodnie = Meteor.subscribe('przychodnie');
+    var subscriptionSpecjalnosci = Meteor.subscribe('specjalnosci');
+    var subscriptionLekarze = Meteor.subscribe('lekarze');
+
+    this.autorun(function(computation){
+        if(subscriptionPrzychodnie.ready() && subscriptionSpecjalnosci.ready() && subscriptionLekarze.ready()){
+            setPrzychodnie();
+            setSpecjalnosci();
+
+            computation.stop();
+        }
+    });
 };
 
 setPrzychodnie =  function(){
