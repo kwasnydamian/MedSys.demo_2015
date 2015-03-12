@@ -1,33 +1,19 @@
+/**
+ * Created by damian on 06.03.15.
+ */
 Template.terminarz.rendered = function(){
     $('#calendar').fullCalendar({
         header:{
             left: 'prev,next today',
             center: 'title',
-            right:'agendaWeek,agendaDay'
+            right:'agendaWeek'
         },
-        minTime:"06:00:00",
-        maxTime:"20:00:00",
-        lang: 'pl',
+        lang: 'es',
         weekends:true,
         defaultView: 'agendaWeek',
         editable:true,
         eventLimit:true,
-        events: function(start, end, timezone, callback) {
-            console.log(start);
-            console.log(end);
-            console.log(timezone);
-            var events = [];
-            var calendar = Wizyty.find();
-            if (calendar) {
-                calendar.forEach(function (event) {
-                    eventDetails = {};
-                    for(key in event)
-                        eventDetails[key] = event[key];
-                    events.push(eventDetails);
-                });
-            }
-            callback(events);
-        },
+        //contentHeigth:300,
         dayClick: function(date, jsEvent, view){
 
         },
@@ -35,7 +21,23 @@ Template.terminarz.rendered = function(){
             element.click(function(){
                 AntiModals.alert("opis");
             })
-        }
+        },
+        eventSources:[
+            {
+                events:[
+                    {
+                        id:999,
+                        title:'pierwsza wizyta',
+                        start: '2015-03-09T08:00:00',
+                        end: '2015-03-09T12:00:00',
+                        description: 'aasa  aa afaa',
+                        allDay: false
+                    }
+
+                ]
+            }
+        ],
+        eventStartEditable: true
     })
 };
 
