@@ -38,8 +38,6 @@ Template.addWizytaModal.events({
               $("#dodajWizyte").modal('hide');
           }
        }
-
-
    }
 });
 

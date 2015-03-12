@@ -12,7 +12,8 @@ accounts-password
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
 anti:modals
-tsega:bootstrap3-datetimepicker
 rzymek:fullcalendar
-momentjs:moment
+tsega:bootstrap3-datetimepicker
 fortawesome:fontawesome
+momentjs:moment
+sacha:spin

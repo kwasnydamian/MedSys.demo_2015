@@ -1,0 +1,25 @@
+<template name="client">
+
+    <h1>Konsultacja</h1>
+    {{> welcome }}
+    {{> messages }}
+    {{> input }}
+
+
+</template>
+
+<template name="welcome">
+    <p>
+
+    </p>
+</template>
+
+<template name="messages">
+    {{#each messages}}
+        <strong>{{username}} {{time}}:</strong> {{message}}<br>
+    {{/each}}
+</template>
+
+<template name="input">
+    <p>Message: <input type="text" id="message"></p>
+</template>
