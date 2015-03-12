@@ -10,6 +10,7 @@ Template.registerVisit.helpers({
 Template.registerVisit.events({
     'change #przychodnie': function(){
          $('#doctorCalendar').fullCalendar('destroy');
+         document.getElementById("chat").classList.add("hidden");
          var przychodnie = document.getElementById("przychodnie");
          var specjalnosci = document.getElementById("specjalnosci");
          var lekarze = document.getElementById("lekarze");
@@ -22,9 +23,11 @@ Template.registerVisit.events({
 
          lekarze.disabled="disabled";
          lekarze.value = 0;
+        $('#doctorCalendarInfo').show();
     },
     'change #specjalnosci': function(){
         $('#doctorCalendar').fullCalendar('destroy');
+        document.getElementById("chat").classList.add("hidden");
          var lekarze = document.getElementById("lekarze");
          var specjalnosc = document.getElementById("specjalnosci").value;
          var przychodnie = document.getElementById("przychodnie").value;
@@ -37,16 +40,21 @@ Template.registerVisit.events({
              lekarze.add(option,null);
          });
          lekarze.disabled="";
+        $('#doctorCalendarInfo').show();
     },
     'change #lekarze':function(){
         var idLekarza = document.getElementById('lekarze').value;
 
         if(idLekarza==0){
             $('#doctorCalendar').fullCalendar('destroy');
+            document.getElementById("chat").classList.add("hidden");
+            $('#doctorCalendarInfo').show();
         }
         else{
             $('#doctorCalendar').fullCalendar('destroy');
+            $('#doctorCalendarInfo').hide();
             zaladujKalendarz(idLekarza);
+            document.getElementById("chat").classList.remove("hidden");
         }
     },
     'click #wizytaButton':function(){
@@ -57,9 +65,6 @@ Template.registerVisit.events({
     else{
         AntiModals.alert("Wybierz lekarza");
     }
-    },
-    'click #konsultacjaButton':function(){
-     document.getElementById("chat").classList.remove("hidden");
     }
 });
 
@@ -126,7 +131,6 @@ zaladujKalendarz = function(idLekarza){
             lang: 'pl',
             weekends:true,
             defaultView: 'agendaWeek',
-            editable:true,
             eventLimit:true,
             events: function(start, end, timezone, callback) {
                 var events = [];

@@ -1,7 +1,7 @@
 <template name="registerVisit">
     <div class="row">
         <div class="col-md-4">
-            <h4>Umawianie wizyty</h4><br>
+            <h4>Parametry wyboru lekarza</h4>
             <form>
                 <div class="container row">
                     <div class="input-group col-xs-12">
@@ -27,7 +27,6 @@
             <br>
             <h4>Umawianie wizyty</h4>
             <div class="btn-group" role="group" aria-label="addVisitLabel">
-                <a href="#" id="konsultacjaButton" class="btn btn-primary" data-toggle="modal">Konsultacja</a>
                 <a href="#" id="wizytaButton" class="btn btn-primary" data-toggle="modal" >Dodaj wizytę</a>
             </div>
             </form>
@@ -43,6 +42,10 @@
                 </div>
                 <ul class="list-group">
                     <li href="#" class="list-group-item">
+                        <div id="doctorCalendarInfo" class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Proszę wybrać lekarza...</strong>
+                        </div>
                         <div id="doctorCalendar">
 
                         </div>
@@ -52,5 +55,4 @@
         </div>
     </div>
     {{> addWizytaModal}}
-    {{> addKonsultacja}}
 </template>

@@ -36,6 +36,7 @@ Template.addWizytaModal.events({
           var id = Wizyty.insert(wizyta);
           if(id){
               $("#dodajWizyte").modal('hide');
+              $("#doctorCalendar").fullCalendar('refetchEvents');
           }
        }
    }
