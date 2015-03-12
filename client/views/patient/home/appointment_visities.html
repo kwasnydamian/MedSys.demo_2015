@@ -1,16 +1,10 @@
 <template name="umowioneWizyty">
     <ul class="list-group">
-        <a href="#" class="list-group-item">
-            <span class="badge">02-04-2015</span>
-            Wizyta u dr Pawlikowa
-        </a>
-        <a href="#" class="list-group-item">
-            <span class="badge">03-04-2015</span>
-            Wizyta kontrolna u dr Kota
-        </a>
-        <a href="#" class="list-group-item">
-            <span class="badge">03-05-2015</span>
-            dr Szczyt
-        </a>
+        {{#each listaWizyt}}
+            <a href="#" class="list-group-item">
+                <span class="badge">{{start}}</span>
+                {{title}}
+            </a>
+        {{/each}}
     </ul>
 </template>
