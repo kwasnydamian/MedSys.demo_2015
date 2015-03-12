@@ -20,7 +20,7 @@ Template.input.events = {
                 Messages.insert({
                     name: name,
                     message: message.value,
-                    time: Date.now(),
+                    time: moment().format("DD-MM-YYYY H:mm:ss"),
                     username: name
                 });
 

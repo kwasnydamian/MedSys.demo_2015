@@ -22,3 +22,6 @@ Meteor.publish('wojewodztwa', function () {
 Meteor.publish('lekarze', function () {
     return Uzytkownicy.find({'profile.isDoctor':true});
 });
+Meteor.publish('messages', function (){
+   return Messages.find();
+});
