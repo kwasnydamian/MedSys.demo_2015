@@ -3,7 +3,10 @@
  */
 Template.messages.helpers({
     messages: function() {
-        return Messages.find({}, { sort: { time: 1}});
+        var doctorId = document.getElementById('lekarze').value;
+        if(doctorId!==0){
+            return Messages.find({id_patient:Meteor.userId(),id_doctor:doctorId}, { sort: { time: 1}});
+        }
     }
 })
 
@@ -21,7 +24,9 @@ Template.input.events = {
                     name: name,
                     message: message.value,
                     time: moment().format("DD-MM-YYYY H:mm:ss"),
-                    username: name
+                    username: name,
+                    id_patient: Meteor.userId(),
+                    id_doctor: document.getElementById('lekarze').value
                 });
 
                 document.getElementById('message').value = '';

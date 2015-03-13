@@ -8,15 +8,26 @@ Template.registerVisit.helpers({
 });
 
 Template.registerVisit.events({
-     'change #przychodnie': function(){
+    'change #przychodnie': function(){
+         $('#doctorCalendar').fullCalendar('destroy');
+         document.getElementById("chat").classList.add("hidden");
+         var przychodnie = document.getElementById("przychodnie");
          var specjalnosci = document.getElementById("specjalnosci");
          var lekarze = document.getElementById("lekarze");
+
          specjalnosci.disabled="";
          specjalnosci.value = 0;
+         if(przychodnie.value==0){
+             specjalnosci.disabled="disabled";
+         }
+
          lekarze.disabled="disabled";
          lekarze.value = 0;
-     },
-     'change #specjalnosci': function(){
+        $('#doctorCalendarInfo').show();
+    },
+    'change #specjalnosci': function(){
+        $('#doctorCalendar').fullCalendar('destroy');
+        document.getElementById("chat").classList.add("hidden");
          var lekarze = document.getElementById("lekarze");
          var specjalnosc = document.getElementById("specjalnosci").value;
          var przychodnie = document.getElementById("przychodnie").value;
@@ -29,24 +40,38 @@ Template.registerVisit.events({
              lekarze.add(option,null);
          });
          lekarze.disabled="";
-     },
-     'click #wizytaButton':function(){
-        var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
-        if(czyWybranoLekarza){
-            $("#dodajWizyte").modal('show');
+        $('#doctorCalendarInfo').show();
+    },
+    'change #lekarze':function(){
+        var idLekarza = document.getElementById('lekarze').value;
+
+        if(idLekarza==0){
+            $('#doctorCalendar').fullCalendar('destroy');
+            document.getElementById("chat").classList.add("hidden");
+            $('#doctorCalendarInfo').show();
         }
         else{
-            AntiModals.alert("Wybierz lekarza");
+            $('#doctorCalendar').fullCalendar('destroy');
+            $('#doctorCalendarInfo').hide();
+            zaladujKalendarz(idLekarza);
+            document.getElementById("chat").classList.remove("hidden");
         }
-     },
-    'click #konsultacjaButton':function(){
-         document.getElementById("chat").classList.remove("hidden");
+    },
+    'click #wizytaButton':function(){
+    var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
+    if(czyWybranoLekarza){
+        $("#dodajWizyte").modal('show');
+    }
+    else{
+        AntiModals.alert("Wybierz lekarza");
+    }
     }
 });
 
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
     setSpecjalnosci();
+
 };
 
 setPrzychodnie =  function(){
@@ -94,3 +119,39 @@ sprawdzCzyWybranoLekarza = function(){
     return flaga;
 };
 
+zaladujKalendarz = function(idLekarza){
+        $('#doctorCalendar').fullCalendar({
+            header:{
+                left: 'prev,next today',
+                center: 'title',
+                right:'agendaWeek,agendaDay'
+            },
+            minTime:"06:00:00",
+            maxTime:"20:00:00",
+            lang: 'pl',
+            weekends:true,
+            defaultView: 'agendaWeek',
+            eventLimit:true,
+            events: function(start, end, timezone, callback) {
+                var events = [];
+                var calendar = Wizyty.find({id_lekarz:idLekarza});
+                if (calendar) {
+                    calendar.forEach(function (event) {
+                        eventDetails = {};
+                        for(key in event)
+                            eventDetails[key] = event[key];
+                        events.push(eventDetails);
+                    });
+                }
+                callback(events);
+            },
+            dayClick: function (date, allDay, jsEvent, view) {
+
+            },
+            eventRender:function(event,element){
+                element.click(function(){
+                    AntiModals.alert("opis");
+                })
+            }
+        });
+}

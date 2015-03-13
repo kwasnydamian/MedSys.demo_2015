@@ -1,0 +1,10 @@
+<template name="umowioneWizyty">
+    <ul class="list-group">
+        {{#each listaWizyt}}
+            <a href="#" class="list-group-item">
+                <span class="badge">{{formatDate start}}</span>
+                {{title}}
+            </a>
+        {{/each}}
+    </ul>
+</template>
