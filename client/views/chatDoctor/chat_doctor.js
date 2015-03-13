@@ -1,16 +1,18 @@
 /**
  * Created by Dorian on 09.03.15.
  */
-Template.messages.helpers({
-    messages: function() {
-        var doctorId = document.getElementById('lekarze').value;
-        if(doctorId!==0){
-            return Messages.find({id_patient:Meteor.userId(),id_doctor:doctorId}, { sort: { time: 1}});
+
+Template.messagesDoctor.helpers({
+    messagesDoctor: function() {
+        var patientId = document.getElementById('pacjenci').value;
+
+        if(patientId!==0){
+            return Messages.find({id_doctor:Meteor.userId(),id_patient:patientId()}, { sort: { time: 1}});
         }
     }
 })
 
-Template.input.events = {
+Template.inputDoctor.events = {
     'keydown input#message' : function (event) {
         if (event.which == 13) { // 13 is the enter key event
             if (Meteor.user())
@@ -25,8 +27,8 @@ Template.input.events = {
                     message: message.value,
                     time: moment().format("DD-MM-YYYY H:mm:ss"),
                     username: name,
-                    id_patient: Meteor.userId(),
-                    id_doctor: document.getElementById('lekarze').value
+                    id_doctor: Meteor.userId(),
+                    id_patient: document.getElementById('pacjenci').value
                 });
 
                 document.getElementById('message').value = '';
@@ -35,3 +37,18 @@ Template.input.events = {
         }
     }
 }
+
+Template.chatDoctor.rendered = function(){
+    setPacjent();
+
+};
+
+setPacjent =  function(){
+    var pacjenci = document.getElementById('pacjenci');
+    Uzytkownicy.find({'profile.isPatient':true}).forEach(function(user){
+        var option = document.createElement("option");
+        option.text = user.username;
+        option.value = user._id;
+        pacjenci.add(option,null);
+    });
+};

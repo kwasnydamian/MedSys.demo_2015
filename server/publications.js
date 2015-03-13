@@ -25,3 +25,6 @@ Meteor.publish('lekarze', function () {
 Meteor.publish('messages', function (){
    return Messages.find();
 });
+Meteor.publish('messagesDoctor', function (){
+    return Messages.find();
+});
