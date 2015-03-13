@@ -1,0 +1,46 @@
+
+<template name="chatDoctor">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            Konsultacja
+                            <div class="input-group col-xs-6">
+                                <select class="form-control input-sm" name="pacjenci" id="pacjenci">
+                                    <option value="0">--Wybierz pacjenta--</option>
+                                </select>
+                            </div>
+                        </div>
+                            <div class="panel-body">
+                                        {{> welcomeDoctor }}
+                                <div class="scrollmatka" data-spy="scroll" id="scroll" data-target="#scroll2">
+                                    <div class="scrollsyn" id="scroll2">
+                                        {{> messagesDoctor }}
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{> inputDoctor }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+</template>
+
+<template name="welcomeDoctor">
+    <p>
+
+    </p>
+</template>
+
+<template name="messagesDoctor">
+    {{#each messagesDoctor}}
+        <strong>{{username}} {{time}}:</strong> {{message}}<br>
+    {{/each}}
+</template>
+
+<template name="inputDoctor">
+    <p>Message: <input type="text" id="message"></p>
+</template>

@@ -1,0 +1,16 @@
+html {
+    padding: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+.login-buttons-dropdown-align-right {
+    float: right;
+}
+.body{
+    color: #002f6b;
+}
+.scrollsyn {
+    width: auto;
+    height: 325px;
+    overflow: auto;
+}
