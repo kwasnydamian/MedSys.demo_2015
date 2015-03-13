@@ -13,7 +13,6 @@ Template.terminarz.rendered = function(){
         defaultView: 'agendaWeek',
         editable:true,
         eventLimit:true,
-        //contentHeigth:300,
         dayClick: function(date, jsEvent, view){
 
         },
