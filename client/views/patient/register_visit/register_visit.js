@@ -149,9 +149,7 @@ zaladujKalendarz = function(idLekarza){
 
             },
             eventRender:function(event,element){
-                element.click(function(){
-                    AntiModals.alert("opis");
-                })
+
             }
         });
 }

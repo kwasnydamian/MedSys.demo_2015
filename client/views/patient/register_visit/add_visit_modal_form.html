@@ -8,9 +8,12 @@
                 </div>
                 <form class="clearfix">
                     <div class="modal-body">
-                    <div id="poprawFormularz" class="hidden">
-                        <p class="text-danger" id="poprawFormularzContent"></p>
-                    </div>
+                        <div id="formErrors" class="hidden">
+                            <p class="text-danger" id="formErrorsContent"></p>
+                        </div>
+                        <div id="formSuccess" class="hidden">
+                            <p class="text-success" id="formSuccessContent">Dodano wizytę</p>
+                        </div>
                     <div class="input-group">
                         <label for="title">Tytuł</label><br />
                         <input type="text" name="title" id="title">
@@ -29,7 +32,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
-                        <input type="submit" class="btn btn-primary" value="Zapisz"/>
+                        <input type="submit" id="save" class="btn btn-primary" value="Zapisz"/>
                     </div>
                 </form>
             </div>
