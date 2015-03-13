@@ -91,6 +91,8 @@
       <root url="file://$USER_HOME$/.meteor/packages/livedata/1.0.12/os/packages/livedata.js" />
       <root url="file://$USER_HOME$/.meteor/packages/application-configuration/1.0.4/os/packages/application-configuration.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ddp/1.0.14/os/packages/ddp.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/htmljs/1.0.3/os/packages/htmljs.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/ddp/1.0.14/os/packages/ddp.js" />
       <root url="file://$USER_HOME$/.meteor/packages/reactive-var/1.0.4/os/packages/reactive-var.js" />
       <root url="file://$USER_HOME$/.meteor/packages/boilerplate-generator/1.0.2/os/packages/boilerplate-generator.js" />
       <root url="file://$USER_HOME$/.meteor/packages/srp/1.0.2/os/packages/srp.js" />
