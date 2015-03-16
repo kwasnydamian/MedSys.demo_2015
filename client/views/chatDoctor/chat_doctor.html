@@ -4,11 +4,13 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
-                            Konsultacja
-                            <div class="input-group col-xs-6">
-                                <select class="form-control input-sm" name="pacjenci" id="pacjenci">
-                                    <option value="0">--Wybierz pacjenta--</option>
-                                </select>
+                                <div class="input-group col-xs-6 pull-left">
+                                    <select class="form-control input-sm" name="pacjenci" id="pacjenci">
+                                        <option value="0">--Wybierz pacjenta--</option>
+                                    </select>
+                                </div>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#pollsModal"><span class="fa fa-share"></span></button>
                             </div>
                         </div>
                             <div class="panel-body">
@@ -26,6 +28,7 @@
                         </div>
                     </div>
                 </div>
+                {{> pollsModalTemplate}}
             </div>
 </template>
 
@@ -43,4 +46,36 @@
 
 <template name="inputDoctor">
     <p>Message: <input type="text" id="message"></p>
+</template>
+
+<template name="pollsModalTemplate">
+    <div class="modal fade" id="pollsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ankiety</h4>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        {{> modalBody}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                        <button type="submit" class="btn btn-primary">Wyślij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="modalBody">
+    <div class="btn-group" data-toggle="buttons">
+        {{#each polls}}
+            <label class="btn btn-primary">
+                <input type="radio" name="poll" value="{{_id}}" autocomplete="off"> {{nazwa}}
+            </label>
+        {{/each}}
+    </div>
 </template>

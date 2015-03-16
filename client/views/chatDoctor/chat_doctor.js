@@ -4,11 +4,11 @@
 
 Template.messagesDoctor.helpers({
     messagesDoctor: function() {
-        var patientId = document.getElementById('pacjenci').value;
+        //var patientId = document.getElementById('pacjenci').value;
 
-        if(patientId!==0){
-            return Messages.find({id_doctor:Meteor.userId(),id_patient:patientId()}, { sort: { time: 1}});
-        }
+       // if(patientId!==0){
+            return Messages.find({id_doctor:Meteor.userId(),id_patient:Session.get('idPacjenta')}, { sort: { time: 1}});
+       // }
     }
 })
 
@@ -43,6 +43,16 @@ Template.chatDoctor.rendered = function(){
 
 };
 
+Template.chatDoctor.events({
+    'change #pacjenci': function(){
+        var idPacjenta = document.getElementById('pacjenci').value;
+        Session.set('idPacjenta',idPacjenta);
+    },
+    'click #pollsModalButton':function(){
+       // alert("");
+    }
+})
+
 setPacjent =  function(){
     var pacjenci = document.getElementById('pacjenci');
     Uzytkownicy.find({'profile.isPatient':true}).forEach(function(user){
@@ -52,3 +62,34 @@ setPacjent =  function(){
         pacjenci.add(option,null);
     });
 };
+
+Template.modalBody.helpers({
+   polls:function(){
+       return Polls.find();
+   }
+});
+
+Template.pollsModalTemplate.events({
+    'submit form':function(e){
+        event.preventDefault();
+        var id_ankieta = $(e.target).find('[name=poll]:checked').val();
+        var id_pacjent = document.getElementById('pacjenci').value;
+        var ankietaPacjent = {
+            id_ankieta: id_ankieta,
+            id_pacjent: id_pacjent,
+            id_lekarz: Meteor.userId(),
+            isDone: false,
+            isAvailable: false
+        };
+        if(id_ankieta!="" && id_ankieta !=undefined
+            && id_pacjent!="0" && id_pacjent !="undefined"){
+            var ankPac = PollsPatients.insert(ankietaPacjent);
+            if(ankPac){
+                $("#pollsModal").modal('hide');
+            }
+        }
+        else{
+            alert("Błąd");
+        }
+    }
+})

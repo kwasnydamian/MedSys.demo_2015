@@ -198,4 +198,30 @@ if(Meteor.users.find().count()===0){
         'nazwa':'nowosądecki'
     });
 
+    // inicjalizacja ankiet
+    var ankietaPodstawowa = Polls.insert({
+        'nazwa':'podstawowa'
+    });
+    var ankietaCukrzyca = Polls.insert({
+        'nazwa':'cukrzyca'
+    });
+
+    // inicjalizacja pytań
+    var pytanie1 = PollQuestions.insert({
+        'pytanie':'W jakim jesteś wieku?',
+        'id_ankiety': ankietaPodstawowa
+    });
+    var pytanie2 = PollQuestions.insert({
+        'pytanie':'Ile masz lat?',
+        'id_ankiety': ankietaPodstawowa
+    });
+    var pytanie3 = PollQuestions.insert({
+        'pytanie':'Jak często jesz cukierki?',
+        'id_ankiety': ankietaCukrzyca
+    });
+    var pytanie4 = PollQuestions.insert({
+        'pytanie':'Ile ważysz?',
+        'id_ankiety': ankietaCukrzyca
+    });
+
 }

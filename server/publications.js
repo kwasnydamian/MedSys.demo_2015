@@ -28,3 +28,15 @@ Meteor.publish('messages', function (){
 Meteor.publish('messagesDoctor', function (){
     return Messages.find();
 });
+Meteor.publish('polls', function (){
+    return Polls.find();
+});
+Meteor.publish('pollquestions', function (){
+    return PollQuestions.find();
+});
+Meteor.publish('pollspatients', function (){
+    return PollsPatients.find();
+});
+Meteor.publish('answers', function (){
+    return Answers.find();
+});

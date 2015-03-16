@@ -64,3 +64,9 @@ Template.patientDashboard.rendered = function(){
         selectable: true
     });
 }
+
+Template.patientDashboard.helpers({
+    iloscWszystkich: function(){
+        return Wizyty.find({id_pacjent:Meteor.userId()}).count();
+    }
+})
