@@ -18,7 +18,9 @@
                         {{/if}}
                     {{/if}}
                     <ul class="nav navbar-nav navbar-right">
-                        {{> loginButtons }}
+                        {{#if currentUser}}
+                            {{> loginButtons }}
+                        {{/if}}
                     </ul>
                 </div>
             </div>

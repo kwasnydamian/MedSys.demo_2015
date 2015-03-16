@@ -198,13 +198,4 @@ if(Meteor.users.find().count()===0){
         'nazwa':'nowosądecki'
     });
 
-    //inicjalizacja wizyt
-    Wizyty.insert({
-        'id_pacjent':pawel,
-        'id_lekarz': damian,
-        'start':'2015-03-09T9:00:00',
-        'end':'2015-03-09T11:00:00',
-        'title':'wizyta kontrolna',
-        'description':'Wykonanie podstawowych badań'
-    });
 }
