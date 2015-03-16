@@ -4,9 +4,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title" id="myModalLabel">Ankieta {{#each nazwaAnkiety}}{{nazwa}}{{/each}}</h4>
+                    <h4 class="modal-title" id="myModalLabel">Ankieta {{#each nazwaAnkiety}}{{nazwa}}{{/each}} </h4>
                 </div>
-                <form class="clearfix">
+                <form id="answersForm" class="clearfix">
                     <div class="modal-body">
                         <div id="formErrors" class="hidden">
                             <p class="text-danger" id="formErrorsContent"></p>
@@ -14,13 +14,13 @@
                         <div id="formSuccess" class="hidden">
                             <p class="text-success" id="formSuccessContent">Zapisano pomyślnie</p>
                         </div>
-                        {{#each questions idPoll}}
+                            {{#each questions}}
                             <div class="input-group">
                                 <label for="{{_id}}">{{pytanie}}</label><br />
                                 <input type="text" name="{{_id}}" id="{{_id}}">
                             </div>
-                        {{/each}}
-                        <input id="idPollPatient" name="idPollPatient" type="hidden" value="0"/>
+                            {{/each}}
+                        <input id="idPollPatient" name="idPollPatient" type="hidden" value="{{idPollPatient}}"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>

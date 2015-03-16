@@ -50,3 +50,32 @@ Template.addWizytaModal.rendered = function(){
        sideBySide:true
     });
 }
+
+Template.addEventTemplate.events({
+    'submit #addEventForm':function(event){
+        event.preventDefault();
+        var idLekarz = document.getElementById("lekarze").value;
+        var start = document.getElementById("start").value;
+        var wizyta = {
+            title: $(event.target).find('[name=title]').val(),
+            start: moment(start).format("YYYY-MM-DDTHH:mm:ssZZ"),
+            end: moment(moment(start).add(30,'minutes')).format("YYYY-MM-DDTHH:mm:ssZZ"),
+            id_pacjent: Meteor.userId(),
+            id_lekarz: idLekarz,
+            isAvailable: true,
+            isAccepted: false
+        };
+
+        if(wizyta.title=="" || wizyta.title=="undefined"){
+            AntiModals.alert("Proszę wpisać tytuł");
+        }
+        else{
+            console.log("Jest tytuł");
+            var id = Wizyty.insert(wizyta);
+            if(id){
+                $("#addEvent").modal('hide');
+                $("#doctorCalendar").fullCalendar('refetchEvents');
+            }
+        }
+    }
+})

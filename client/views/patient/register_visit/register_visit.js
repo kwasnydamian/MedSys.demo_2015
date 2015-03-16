@@ -150,9 +150,14 @@ zaladujKalendarz = function(idLekarza){
                 callback(events);
             },
             dayClick: function (date, allDay, jsEvent, view) {
-
+                document.getElementById('labelStart').innerHTML=moment(date).format("DD-MM-YYYY HH:mm");
+                document.getElementById('start').value=date;
+                $("#addEvent").modal('show');
             },
             eventRender:function(event,element){
+
+            },
+            eventClick:function(event,jsEvent,view){
 
             }
         });

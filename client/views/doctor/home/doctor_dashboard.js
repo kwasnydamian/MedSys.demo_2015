@@ -15,6 +15,7 @@ Template.doctorDashboard.rendered = function(){
         weekends:true,
         defaultView: 'agendaWeek',
         eventLimit:true,
+        editable:true,
         events: function(start, end, timezone, callback) {
             var events = [];
             var calendar = Wizyty.find({id_lekarz:Meteor.userId()});
@@ -28,7 +29,10 @@ Template.doctorDashboard.rendered = function(){
             }
             callback(events);
         },
-        dayClick: function(date, jsEvent, view){
+        eventMouseover: function(event, jsEvent, view){
+
+        },
+        eventMouseout: function(event, jsEvent, view){
 
         },
         eventRender:function(event,element){
@@ -43,24 +47,31 @@ Template.doctorDashboard.rendered = function(){
                 });
                 $('#doctorEventInfo').modal('show');
                 $("#eventTitle").html(event.title);
-                $("#eventDescription").html(event.description);
                 var start = moment(event.start).format("DD-MM-YYYY HH:mm");
                 $("#eventStart").html("termin: "+start);
                 $("#eventPatient").html("pacjent: "+lastName+" "+firstName);
                 $("#idEvent").val(event._id);
             });
         },
-        selectable: true
+        eventResize:function(event, delta, revertFunc,jsEvent,ui,view){
+            var end = moment(event.end).format();
+            var id = Wizyty.update({_id:event._id},{$set:{end:end}});
+        },
+        eventDrop:function(event, delta, revertFunc,jsEvent,ui,view){
+            var end = moment(event.end).format();
+            var start = moment(event.start).format();
+            var id = Wizyty.update({_id:event._id},{$set:{end:end,start:start}});
+        }
     });
 }
 
 Template.doctorEventModalInfo.events({
     'click #reject':function(){
         var idEvent = document.getElementById('idEvent').value;
-        alert("reject "+idEvent);
+        console.log("reject "+idEvent);
     },
     'click #accept':function(){
         var idPacjent = document.getElementById('idEvent').value;
-        alert("acccept "+idPacjent);
+        console.log("acccept "+idPacjent);
     }
 })

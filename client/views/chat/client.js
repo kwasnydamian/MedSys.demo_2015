@@ -53,16 +53,17 @@ Template.client.helpers({
             return true;
         }
     }
-});Template.client.events({
-    'click .pollItem':function(event){
-        var id = event.currentTarget;
-        $("#pollModal").modal("show");
+});
 
-        pollPatient = PollsPatients.find({_id:id});
+Template.client.events({
+    'click .pollItem':function(event){
+        var target = event.currentTarget;
+        pollPatient = PollsPatients.findOne({_id:target.id});
         Session.set('idPollPatient',pollPatient._id);
         Session.set('idPoll',pollPatient.id_ankieta);
 
-        $("#idPollPatient").value=id.id;
+        //$("#idPollPatient").value=target.id;
+        $("#pollModal").modal("show");
     }
 })
 
