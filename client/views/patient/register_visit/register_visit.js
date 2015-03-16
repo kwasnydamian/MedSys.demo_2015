@@ -24,6 +24,7 @@ Template.registerVisit.events({
          lekarze.disabled="disabled";
          lekarze.value = 0;
         $('#doctorCalendarInfo').show();
+        Session.set('idLekarza','');
     },
     'change #specjalnosci': function(){
         $('#doctorCalendar').fullCalendar('destroy');
@@ -41,11 +42,13 @@ Template.registerVisit.events({
          });
          lekarze.disabled="";
         $('#doctorCalendarInfo').show();
+        Session.set('idLekarza','');
     },
     'change #lekarze':function(){
         var idLekarza = document.getElementById('lekarze').value;
 
         if(idLekarza==0){
+            Session.set('idLekarza','');
             $('#doctorCalendar').fullCalendar('destroy');
             document.getElementById("chat").classList.add("hidden");
             $('#doctorCalendarInfo').show();
@@ -54,6 +57,7 @@ Template.registerVisit.events({
             $('#doctorCalendar').fullCalendar('destroy');
             $('#doctorCalendarInfo').hide();
             zaladujKalendarz(idLekarza);
+            Session.set('idLekarza', idLekarza);
             document.getElementById("chat").classList.remove("hidden");
         }
     },
@@ -71,7 +75,7 @@ Template.registerVisit.events({
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
     setSpecjalnosci();
-
+    Session.set('idLekarza','');
 };
 
 setPrzychodnie =  function(){
