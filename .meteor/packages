@@ -7,7 +7,6 @@
 meteor-platform
 mizzao:bootstrap-3
 iron:router
-ian:accounts-ui-bootstrap-3
 accounts-password
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
@@ -17,3 +16,4 @@ tsega:bootstrap3-datetimepicker
 fortawesome:fontawesome
 momentjs:moment
 sacha:spin
+ian:accounts-ui-bootstrap-3

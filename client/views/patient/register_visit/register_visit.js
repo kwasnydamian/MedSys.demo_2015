@@ -149,9 +149,21 @@ zaladujKalendarz = function(idLekarza){
 
             },
             eventRender:function(event,element){
-                element.click(function(){
-                    AntiModals.alert("opis");
-                })
+
             }
         });
 }
+var requireLogin = function() {
+    if (!Meteor.user()) {
+        if (Meteor.loggingIn()) {
+            this.render(this.loadingTemplate);
+        }
+        else {
+            this.render('accessDenied');
+            this.stop();
+        }
+    }
+    this.next();
+
+}
+Router.before(requireLogin,{only:'registerVisit'});

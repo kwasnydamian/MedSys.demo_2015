@@ -43,15 +43,36 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Terminarz lekarza</div>
                     <div class="panel-body">
-                        list<br />
-                        list<br />
-                        list<br />
-                        list<br />
-                        list<br />
-                        list<br />
-                        list<br />
-                        list<br />
-                        list<br />
+                        <div id="doctorCalendar">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{> doctorEventModalInfo}}
+    </div>
+</template>
+
+<template name="doctorEventModalInfo">
+    <div class="modal fade" id="doctorEventInfo" tabindex="-1" role="dialog" aria-labelledby="test" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="eventTitle"></h4>
+                </div>
+                <div class="modal-body">
+                    <h6 class="label label-default" id="eventPatient"></h6>
+                    <h6 class="label label-default pull-right" id="eventStart"></h6>
+                    <h5 id="eventDescription"></h5>
+                    <input type="hidden" id="idEvent" />
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="cancel" data-dismiss="modal" class="btn btn-default">Anuluj</a>
+                    <div class="btn-group" role="group" aria-label="manageEvent">
+                        <a href="#" id="accept" class="btn btn-success"  >Akceptuj</a>
+                        <a href="#" id="reject" class="btn btn-danger"  >Odrzuć</a>
                     </div>
                 </div>
             </div>
