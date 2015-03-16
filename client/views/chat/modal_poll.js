@@ -2,34 +2,39 @@
  * Created by damian on 14.03.15.
  */
 Template.pollModalTemplate.helpers({
-    idPoll:function(){
-        var pollPatient = Session.get('pollPatient');
-        alert(pollPatient.id_ankieta);
-        return pollPatient.id_ankieta;
-    },
-   questions:function(idPoll){
-       return PollQuestions.find({id_ankiety:idPoll});
-   },
     nazwaAnkiety:function(){
-        return Polls.find({_id:Session.get('idPoll')});
+        var idAnkiety = Session.get('idPoll');
+        return Polls.find({_id:idAnkiety});
+    },
+    questions:function(){
+        return PollQuestions.find({id_ankiety:Session.get('idPoll')});
+    },
+    idPollPatient:function(){
+        return Session.get('idPollPatient');
     }
 });
 
 Template.pollModalTemplate.events({
-    'form submit':function(){
-        var idPollPatient = $(e.target).find('[name=idPollPatient]').val()
-        var poll = Polls.find({_id:idPollPatient});
-        var questions = PollQuestions.find({id_ankiety:poll._id});
+    'submit #answersForm':function(event){
+        event.preventDefault();
+
+        var idPollPatient = Session.get('idPollPatient');
+        var idPoll = Session.get('idPoll');
+        var questions = PollQuestions.find({id_ankiety:idPoll});
+
         questions.forEach(function(question){
             var id=question._id;
+            var odp = document.getElementById(id);
             var odpowiedz = {
                 pytanie: question.pytanie,
-                odpowiedz: $(e.target).find('[name=id]').val(),
+                odpowiedz: odp.value,
                 id_pollpatient: idPollPatient
             }
             Answers.insert(odpowiedz);
         });
         PollsPatients.update({_id:idPollPatient},{$set:{isDone:true}});
-        alert("dodano odpowiedzi i zaktualizowano tabele laczaca");
+        $("#pollModal").modal('hide');
+        Session.set('idPoll','');
+        Session.set('idPollPatient','');
     }
 })
