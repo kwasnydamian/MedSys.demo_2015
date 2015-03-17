@@ -70,3 +70,6 @@ Template.patientDashboard.helpers({
         return Wizyty.find({id_pacjent:Meteor.userId()}).count();
     }
 })
+
+
+

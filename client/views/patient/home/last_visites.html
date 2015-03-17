@@ -1,10 +1,10 @@
 <template name="ostatnieWizyty">
     <ul class="list-group small">
-        <a href="#" class="list-group-item">
-            <p>Wizyta u dr Gronia</p>
-        </a>
-        <a href="#" class="list-group-item">
-            dr Mróz - konsultacja
-        </a>
+        {{#each przeszleWizyty}}
+            <a href="#" class="list-group-item">
+                <span class="badge">{{formatDate start}}</span>
+                {{title}}
+            </a>
+        {{/each}}
     </ul>
 </template>
