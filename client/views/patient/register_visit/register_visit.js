@@ -37,7 +37,7 @@ Template.registerVisit.events({
          Uzytkownicy.find({'profile.isDoctor':true, 'profile.id_specjalnosc':specjalnosc
              ,'profile.id_klinika':przychodnie}).forEach(function(uzytkownik){
              var option = document.createElement("option");
-             option.text = uzytkownik.username;
+             option.text = uzytkownik.profile.lastName+" "+uzytkownik.profile.firstName;
              option.value = uzytkownik._id;
              lekarze.add(option,null);
          });
@@ -93,7 +93,7 @@ setDoktorzy =  function(specjalnosc){
     var lekarze = document.getElementById('lekarze');
     Uzytkownicy.find({'profile.isDoctor':true,'profile.id_specjalnosc':specjalnosc}).forEach(function(uzytkownik){
             var option = document.createElement("option");
-            option.text = uzytkownik.username;
+            option.text = uzytkownik.profile.lastName+" "+uzytkownik.profile.firstName;
             option.value = uzytkownik._id;
             lekarze.add(option,null);
     });
