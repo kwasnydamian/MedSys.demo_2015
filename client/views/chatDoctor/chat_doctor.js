@@ -77,7 +77,7 @@ setPacjent =  function(){
     var pacjenci = document.getElementById('pacjenci');
     Uzytkownicy.find({'profile.isPatient':true}).forEach(function(user){
         var option = document.createElement("option");
-        option.text = user.username;
+        option.text = user.profile.lastName+" "+user.profile.firstName;
         option.value = user._id;
         pacjenci.add(option,null);
     });

@@ -65,8 +65,8 @@ Template.doctorDashboard.rendered = function(){
                     $('#doctorEventInfo').modal('show');
                     $("#eventTitle").html(event.title);
                     var start = moment(event.start).format("DD-MM-YYYY HH:mm");
-                    $("#eventStart").html("termin: " + start);
-                    $("#eventPatient").html("pacjent: " + lastName + " " + firstName);
+                    $("#eventStart").html(start);
+                    $("#eventPatient").html(lastName + " " + firstName);
                     $("#idEvent").val(event._id);
                 });
             },
@@ -86,10 +86,13 @@ Template.doctorDashboard.rendered = function(){
 Template.doctorEventModalInfo.events({
     'click #reject':function(){
         var idEvent = document.getElementById('idEvent').value;
-        console.log("reject "+idEvent);
+        //Wizyty.remove({_id:idEvent});
+        Wizyty.update({_id:idEvent},{$set:{isAvailable:false}});
+        $('#doctorEventInfo').modal('hide');
     },
     'click #accept':function(){
-        var idPacjent = document.getElementById('idEvent').value;
-        console.log("acccept "+idPacjent);
+        var idEvent = document.getElementById('idEvent').value;
+        Wizyty.update({_id:idEvent},{$set:{isAccepted:true}});
+        $('#doctorEventInfo').modal('hide');
     }
 })
