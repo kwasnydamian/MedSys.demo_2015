@@ -1,6 +1,7 @@
 /**
  * Created by damian on 04.03.15.
  */
+
 Template.registerVisit.helpers({
     user_id: function(){
         return Meteor.userId();
@@ -136,6 +137,7 @@ zaladujKalendarz = function(idLekarza){
             weekends:true,
             defaultView: 'agendaWeek',
             eventLimit:true,
+            selectable:true,
             events: function(start, end, timezone, callback) {
                 var events = [];
                 var calendar = Wizyty.find({id_lekarz:idLekarza});
@@ -154,8 +156,20 @@ zaladujKalendarz = function(idLekarza){
                 document.getElementById('start').value=date;
                 $("#addEvent").modal('show');
             },
-            eventRender:function(event,element){
+            dayRender:function(date,cell){
 
+            },
+            eventRender:function(event,element){
+                //element.popover({
+                //    placement: 'auto',
+                //    html:true,
+                //    title:'text',
+                //    content: 'text'
+                //});
+                //$('body').on('click',function(e){
+                //    if(!element.is(e.target) && cell.has(e.target).length ===0 && $('.popover').has(e.target).length===0)
+                //        element.popover('hide');
+                //})
             },
             eventClick:function(event,jsEvent,view){
 

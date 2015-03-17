@@ -3,7 +3,7 @@
  */
 Template.umowioneWizyty.helpers({
     listaWizyt:function(){
-        return Wizyty.find({id_pacjent:Meteor.userId()},{limit:3});
+        return Wizyty.find({id_pacjent:Meteor.userId()},{limit:5});
     }
 });
 
