@@ -2,6 +2,9 @@
  * Created by damian on 11.03.15.
  */
 Template.patientDashboard.rendered = function(){
+    this.autorun(function(){
+        $('#patientCalendar').fullCalendar('refetchEvents');
+
     var evt =[];
     Wizyty.find({id_pacjent:Meteor.userId()}).forEach(function(item){
         evt.push({
@@ -62,6 +65,7 @@ Template.patientDashboard.rendered = function(){
             });
         },
         selectable: true
+    });
     });
 }
 

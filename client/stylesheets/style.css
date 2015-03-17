@@ -13,7 +13,6 @@
 }
 body {
     background: #ffffff;
-    color: #002f6b;
 }
 .navbar { margin-bottom: 10px }
 .navbar .navbar-inner {
@@ -43,7 +42,6 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#001e5799',GradientType=1 );
 }
 .panel-default > .panel-heading{
-    color: #002f6b;
     background-color: #f5f5f5;
     border-color: #ddd;
 }
