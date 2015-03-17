@@ -1,8 +1,7 @@
 <template name="ostatnieWizyty">
     <ul class="list-group small">
         {{#each przeszleWizyty}}
-            <a href="#" class="list-group-item">
-                <span class="badge">{{formatDate start}}</span>
+            <a href="#" class="list-group-item" title="{{formatDate start}}">
                 {{title}}
             </a>
         {{/each}}

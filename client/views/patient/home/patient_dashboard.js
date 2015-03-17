@@ -70,8 +70,11 @@ Template.patientDashboard.rendered = function(){
 }
 
 Template.patientDashboard.helpers({
-    iloscWszystkich: function(){
-        return Wizyty.find({id_pacjent:Meteor.userId()}).count();
+    iloscUmowionychWizyt:function(){
+        return Wizyty.find({id_pacjent:Meteor.userId(),start:{$gte:moment().format()}}).count();
+    },
+    iloscOstatnichWizyt:function(){
+        return Wizyty.find({id_pacjent:Meteor.userId(),start:{$lt:moment().format()}}).count();
     }
 })
 
