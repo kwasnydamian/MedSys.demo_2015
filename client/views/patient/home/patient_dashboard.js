@@ -21,8 +21,9 @@ Template.patientDashboard.rendered = function(){
         header:{
             left: 'prev,next today',
             center: 'title',
-            right:'agendaWeek,agendaDay'
+            right:'month,agendaWeek,agendaDay'
         },
+        allDaySlot:false,
         minTime:"06:00:00",
         maxTime:"20:00:00",
         slotEventOverlap:true,

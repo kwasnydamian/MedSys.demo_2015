@@ -25,6 +25,8 @@ Template.doctorDashboard.rendered = function(){
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
+            allDaySlot:false,
+            height:452,
             minTime: "06:00:00",
             maxTime: "20:00:00",
             slotEventOverlap: true,

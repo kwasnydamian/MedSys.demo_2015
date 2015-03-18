@@ -144,6 +144,7 @@ zaladujKalendarz = function(idLekarza){
                 center: 'title',
                 right:'agendaWeek,agendaDay'
             },
+            allDaySlot:false,
             minTime:"06:00:00",
             maxTime:"20:00:00",
             lang: 'pl',
