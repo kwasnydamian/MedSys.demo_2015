@@ -20,6 +20,9 @@ Template.registerVisit.events({
          specjalnosci.value = 0;
          if(przychodnie.value==0){
              specjalnosci.disabled="disabled";
+         }else{
+             deleteDropdownOptions(specjalnosci);
+             setSpecjalnosci(przychodnie.value);
          }
 
          lekarze.disabled="disabled";
@@ -63,20 +66,26 @@ Template.registerVisit.events({
         }
     },
     'click #wizytaButton':function(){
-    var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
-    if(czyWybranoLekarza){
-        $("#dodajWizyte").modal('show');
-    }
-    else{
-        AntiModals.alert("Wybierz lekarza");
-    }
+        var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
+        if(czyWybranoLekarza){
+            $("#dodajWizyte").modal('show');
+        }
+        else{
+            AntiModals.alert("Wybierz lekarza");
+        }
     }
 });
 
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
-    setSpecjalnosci();
     Session.set('idLekarza','');
+
+    this.autorun(function() {
+        $('#doctorCalendar').fullCalendar('refetchEvents');
+        if(Session.get('idLekarza')!==''){
+            zaladujKalendarz(Session.get('idLekarza'));
+        }
+    });
 };
 
 setPrzychodnie =  function(){
@@ -99,13 +108,17 @@ setDoktorzy =  function(specjalnosc){
     });
 };
 
-setSpecjalnosci =  function(){
+setSpecjalnosci =  function(id){
+    console.log(id);
     var specjalnosci = document.getElementById('specjalnosci');
     Specjalnosci.find().forEach(function(specjalnosc){
-        var option = document.createElement("option");
-        option.text = specjalnosc.nazwa;
-        option.value = specjalnosc._id;
-        specjalnosci.add(option,null);
+        var lekarzeZeSpecjalnoscia = Uzytkownicy.find({'profile.id_specjalnosc':specjalnosc._id,'profile.id_klinika':id}).count();
+        if(lekarzeZeSpecjalnoscia>0){
+            var option = document.createElement("option");
+            option.text = specjalnosc.nazwa;
+            option.value = specjalnosc._id;
+            specjalnosci.add(option,null);
+        }
     });
 };
 
@@ -119,7 +132,7 @@ sprawdzCzyWybranoLekarza = function(){
     var flaga = false;
     var lekarz = document.getElementById('lekarze').value;
     if(lekarz!=0 && lekarz != "0" && lekarz != "undefined" && lekarz !=""){
-        flaga=true;
+        flaga = true;
     }
     return flaga;
 };
@@ -131,6 +144,7 @@ zaladujKalendarz = function(idLekarza){
                 center: 'title',
                 right:'agendaWeek,agendaDay'
             },
+            allDaySlot:false,
             minTime:"06:00:00",
             maxTime:"20:00:00",
             lang: 'pl',
@@ -140,7 +154,7 @@ zaladujKalendarz = function(idLekarza){
             selectable:true,
             events: function(start, end, timezone, callback) {
                 var events = [];
-                var calendar = Wizyty.find({id_lekarz:idLekarza});
+                var calendar = Wizyty.find({id_lekarz:idLekarza,isAvailable:true});
                 if (calendar) {
                     calendar.forEach(function (event) {
                         eventDetails = {};
@@ -160,33 +174,14 @@ zaladujKalendarz = function(idLekarza){
 
             },
             eventRender:function(event,element){
-                //element.popover({
-                //    placement: 'auto',
-                //    html:true,
-                //    title:'text',
-                //    content: 'text'
-                //});
-                //$('body').on('click',function(e){
-                //    if(!element.is(e.target) && cell.has(e.target).length ===0 && $('.popover').has(e.target).length===0)
-                //        element.popover('hide');
-                //})
+                if(!event.isAccepted){
+                    element.css("background-color","#E34234");
+                    element.css("border-color","#E32636");
+                }
             },
             eventClick:function(event,jsEvent,view){
 
             }
         });
 }
-var requireLogin = function() {
-    if (!Meteor.user()) {
-        if (Meteor.loggingIn()) {
-            this.render(this.loadingTemplate);
-        }
-        else {
-            this.render('accessDenied');
-            this.stop();
-        }
-    }
-    this.next();
 
-}
-Router.before(requireLogin,{only:'registerVisit'});

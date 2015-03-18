@@ -25,6 +25,8 @@ Template.doctorDashboard.rendered = function(){
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
+            allDaySlot:false,
+            height:452,
             minTime: "06:00:00",
             maxTime: "20:00:00",
             slotEventOverlap: true,
@@ -35,7 +37,7 @@ Template.doctorDashboard.rendered = function(){
             editable: true,
             events: function (start, end, timezone, callback) {
                 var events = [];
-                var calendar = Wizyty.find({id_lekarz: Meteor.userId()});
+                var calendar = Wizyty.find({id_lekarz: Meteor.userId(),isAvailable:true});
                 if (calendar) {
                     calendar.forEach(function (event) {
                         eventDetails = {};
@@ -53,6 +55,11 @@ Template.doctorDashboard.rendered = function(){
 
             },
             eventRender: function (event, element) {
+                if(!event.isAccepted){
+                    element.css("background-color","#E34234");
+                    element.css("border-color","#E32636");
+                }
+
                 element.bind('click', function () {
                     var firstName = "";
                     var lastName = "";
@@ -95,4 +102,4 @@ Template.doctorEventModalInfo.events({
         Wizyty.update({_id:idEvent},{$set:{isAccepted:true}});
         $('#doctorEventInfo').modal('hide');
     }
-})
+});
