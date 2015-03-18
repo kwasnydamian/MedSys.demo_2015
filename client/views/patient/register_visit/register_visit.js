@@ -20,6 +20,9 @@ Template.registerVisit.events({
          specjalnosci.value = 0;
          if(przychodnie.value==0){
              specjalnosci.disabled="disabled";
+         }else{
+             deleteDropdownOptions(specjalnosci);
+             setSpecjalnosci(przychodnie.value);
          }
 
          lekarze.disabled="disabled";
@@ -63,19 +66,19 @@ Template.registerVisit.events({
         }
     },
     'click #wizytaButton':function(){
-    var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
-    if(czyWybranoLekarza){
-        $("#dodajWizyte").modal('show');
-    }
-    else{
-        AntiModals.alert("Wybierz lekarza");
-    }
+        var czyWybranoLekarza = sprawdzCzyWybranoLekarza();
+        if(czyWybranoLekarza){
+            $("#dodajWizyte").modal('show');
+        }
+        else{
+            AntiModals.alert("Wybierz lekarza");
+        }
     }
 });
 
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
-    setSpecjalnosci();
+    //setSpecjalnosci();
     Session.set('idLekarza','');
 };
 
@@ -99,13 +102,17 @@ setDoktorzy =  function(specjalnosc){
     });
 };
 
-setSpecjalnosci =  function(){
+setSpecjalnosci =  function(id){
+    console.log(id);
     var specjalnosci = document.getElementById('specjalnosci');
     Specjalnosci.find().forEach(function(specjalnosc){
-        var option = document.createElement("option");
-        option.text = specjalnosc.nazwa;
-        option.value = specjalnosc._id;
-        specjalnosci.add(option,null);
+        var lekarzeZeSpecjalnoscia = Uzytkownicy.find({'profile.id_specjalnosc':specjalnosc._id,'profile.id_klinika':id}).count();
+        if(lekarzeZeSpecjalnoscia>0){
+            var option = document.createElement("option");
+            option.text = specjalnosc.nazwa;
+            option.value = specjalnosc._id;
+            specjalnosci.add(option,null);
+        }
     });
 };
 
