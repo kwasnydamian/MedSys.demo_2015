@@ -78,8 +78,14 @@ Template.registerVisit.events({
 
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
-    //setSpecjalnosci();
     Session.set('idLekarza','');
+
+    this.autorun(function() {
+        $('#doctorCalendar').fullCalendar('refetchEvents');
+        if(Session.get('idLekarza')!==''){
+            zaladujKalendarz(Session.get('idLekarza'));
+        }
+    });
 };
 
 setPrzychodnie =  function(){
@@ -183,17 +189,18 @@ zaladujKalendarz = function(idLekarza){
             }
         });
 }
-var requireLogin = function() {
-    if (!Meteor.user()) {
-        if (Meteor.loggingIn()) {
-            this.render(this.loadingTemplate);
-        }
-        else {
-            this.render('accessDenied');
-            this.stop();
-        }
-    }
-    this.next();
 
-}
-Router.before(requireLogin,{only:'registerVisit'});
+//var requireLogin = function() {
+//    if (!Meteor.user()) {
+//        if (Meteor.loggingIn()) {
+//            this.render(this.loadingTemplate);
+//        }
+//        else {
+//            this.render('accessDenied');
+//            this.stop();
+//        }
+//    }
+//    this.next();
+//
+//}
+//Router.before(requireLogin,{only:'registerVisit'});
