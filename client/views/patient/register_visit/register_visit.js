@@ -132,7 +132,7 @@ sprawdzCzyWybranoLekarza = function(){
     var flaga = false;
     var lekarz = document.getElementById('lekarze').value;
     if(lekarz!=0 && lekarz != "0" && lekarz != "undefined" && lekarz !=""){
-        flaga=true;
+        flaga = true;
     }
     return flaga;
 };
@@ -153,7 +153,7 @@ zaladujKalendarz = function(idLekarza){
             selectable:true,
             events: function(start, end, timezone, callback) {
                 var events = [];
-                var calendar = Wizyty.find({id_lekarz:idLekarza});
+                var calendar = Wizyty.find({id_lekarz:idLekarza,isAvailable:true});
                 if (calendar) {
                     calendar.forEach(function (event) {
                         eventDetails = {};
@@ -173,16 +173,10 @@ zaladujKalendarz = function(idLekarza){
 
             },
             eventRender:function(event,element){
-                //element.popover({
-                //    placement: 'auto',
-                //    html:true,
-                //    title:'text',
-                //    content: 'text'
-                //});
-                //$('body').on('click',function(e){
-                //    if(!element.is(e.target) && cell.has(e.target).length ===0 && $('.popover').has(e.target).length===0)
-                //        element.popover('hide');
-                //})
+                if(!event.isAccepted){
+                    element.css("background-color","#E34234");
+                    element.css("border-color","#E32636");
+                }
             },
             eventClick:function(event,jsEvent,view){
 
@@ -190,17 +184,3 @@ zaladujKalendarz = function(idLekarza){
         });
 }
 
-//var requireLogin = function() {
-//    if (!Meteor.user()) {
-//        if (Meteor.loggingIn()) {
-//            this.render(this.loadingTemplate);
-//        }
-//        else {
-//            this.render('accessDenied');
-//            this.stop();
-//        }
-//    }
-//    this.next();
-//
-//}
-//Router.before(requireLogin,{only:'registerVisit'});

@@ -32,7 +32,7 @@ Template.patientDashboard.rendered = function(){
         eventLimit:true,
         events: function(start, end, timezone, callback) {
             var events = [];
-            var calendar = Wizyty.find({id_pacjent:Meteor.userId()});
+            var calendar = Wizyty.find({id_pacjent:Meteor.userId(),isAvailable:true});
             if (calendar) {
                 calendar.forEach(function (event) {
                     eventDetails = {};
@@ -47,6 +47,10 @@ Template.patientDashboard.rendered = function(){
 
         },
         eventRender:function(event,element){
+            if(!event.isAccepted){
+                element.css("background-color","#E34234");
+                element.css("border-color","#E32636");
+            }
             element.bind('click',function(){
                 var firstName = "";
                 var lastName ="";

@@ -4,6 +4,9 @@
 .padding-5 {
     padding: 5px;
 }
+.margin-top-5{
+    margin-top:5px;
+}
 .grid-block, .main, .post, .comments li, .comment-form {
     background: #0079c1;
     border-radius: 3px;
