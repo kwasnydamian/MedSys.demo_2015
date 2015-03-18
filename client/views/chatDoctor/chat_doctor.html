@@ -59,8 +59,13 @@
 
 <template name="messagesDoctor">
     {{#each messagesDoctor}}
-        {{#if czyAutor messagesDoctor}}
+        {{#if czyAutor _id}}
             <div>
+                <h5>{{message}}</h5>
+                <h5><small>{{time}} <cite title="{{username}}">{{username}}</cite></small></h5>
+            </div>
+        {{else}}
+            <div class="pull-right">
                 <h5>{{message}}</h5>
                 <h5><small>{{time}} <cite title="{{username}}">{{username}}</cite></small></h5>
             </div>
