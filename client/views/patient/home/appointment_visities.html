@@ -1,9 +1,9 @@
 <template name="umowioneWizyty">
     <ul class="list-group">
-        {{#each przyszleWizyty}}
+        {{#each umowioneWizyty}}
             <a href="#" class="list-group-item">
-                <span class="badge">{{formatDate start}}</span>
                 {{title}}
+                <span class="pull-right label label-default">{{formatDate start}}</span>
             </a>
         {{/each}}
     </ul>

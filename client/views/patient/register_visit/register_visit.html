@@ -1,7 +1,6 @@
 <template name="registerVisit">
     <div class="row">
         <div class="col-md-4">
-            <h4>Parametry wyboru lekarza</h4>
             <form>
                 <div class="container row">
                     <div class="input-group col-xs-12">
@@ -31,28 +30,15 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-                    Terminarz lekarza
-                    <div class="pull-right">
-                        <div class="btn-group" role="group" aria-label="addVisitLabel">
-                            <a href="#" id="wizytaButton" class="btn btn-default" data-toggle="modal" ><span class="fa fa-plus"></span> Dodaj wizytę</a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="list-group">
-                    <li href="#" class="list-group-item">
-                        <div id="doctorCalendarInfo" class="alert alert-info alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>Proszę wybrać lekarza...</strong>
-                        </div>
-                        <div id="doctorCalendar">
-
-                        </div>
-                    </li>
-                </ul>
+            <div id="doctorCalendarInfo" class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Proszę wybrać lekarza...</strong>
             </div>
+            <div id="doctorCalendar">
+
+            </div>
+
         </div>
     </div>
-    {{> addWizytaModal}}
+    {{> addEventTemplate}}
 </template>

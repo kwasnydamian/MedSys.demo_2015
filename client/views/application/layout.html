@@ -1,8 +1,24 @@
 <template name="layout">
-    {{> header}}
-    <div class="container">
-        <div id="main" class="row-fluid">
-            {{> yield}}
+    <body>
+    <div id="wrapper">
+        <div id="headerMain">
+            {{> header}}
+        </div>
+        <div id="contentMain">
+            <div class="container">
+                <div id="main" class="row-fluid">
+                    {{> yield}}
+                </div>
+            </div>
+        </div>
+        <div id="footerMain">
+            <div class="panel-footer">
+                <p><span class="fa fa-copyright"></span> created by OneBI</p>
+            </div>
         </div>
     </div>
+    </body>
+
+
+
 </template>

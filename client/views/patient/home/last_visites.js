@@ -3,8 +3,7 @@
  */
 Template.ostatnieWizyty.helpers({
     przeszleWizyty:function(){
-        return Wizyty.find({id_pacjent:Meteor.userId(),start:{$lt:moment().format()}},{sort:{start:-1}}
-            ,{limit:3});
+        return Wizyty.find({id_pacjent:Meteor.userId(),start:{$lt:moment().format()}},{limit:5},{sort:{start:-1}});
     }
 });
 

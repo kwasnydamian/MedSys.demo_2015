@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
-                            Umówione wizyty <span class="badge">{{iloscWszystkich}}</span>
+                            Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
                             <div class="pull-right">
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -25,7 +25,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Ostatnie wizyty</div>
+                        <div class="panel-heading">
+                            Odbyte wizyty <span class="badge">{{iloscOstatnichWizyt}}</span>
+                        </div>
                         {{> ostatnieWizyty}}
                     </div>
                 </div>
@@ -44,15 +46,8 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Terminarz pacjenta</div>
-                    <div class="panel-body">
-                        <div id="patientCalendar">
+            <div id="patientCalendar">
 
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         {{> modalInfo}}

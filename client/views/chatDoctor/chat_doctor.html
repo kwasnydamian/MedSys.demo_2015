@@ -10,10 +10,28 @@
                                     </select>
                                 </div>
                             <div class="pull-right">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#pollsModal"><span class="fa fa-share"></span></button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#pollsModal">Wyślij <span class="fa fa-share"></span></button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="badge">{{wypelnione.count}}</span>
+                                    </button>
+                                    {{#if isPoll wypelnione.count}}
+                                        <ul class="dropdown-menu" role="menu">
+                                            {{#each wypelnione}}
+                                                <li role="presentation">
+                                                    <a href="#" class="pollItem" id="{{_id}}" role="menuitem" tabindex="-1">
+                                                        {{#each getPollName id_ankieta}}
+                                                            {{nazwa}}
+                                                        {{/each}}
+                                                    </a>
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    {{/if}}
+                                </div>
                             </div>
                         </div>
-                            <div class="panel-body">
+                        <div class="panel-body">
                                         {{> welcomeDoctor }}
                                 <div class="scrollmatka" data-spy="scroll" id="scroll" data-target="#scroll2">
                                     <div class="scrollsyn" id="scroll2">
@@ -21,12 +39,13 @@
                                     </div>
                                 </div>
                             </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                {{> inputDoctor }}
+                            </li>
+                        </ul>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            {{> inputDoctor }}
-                        </div>
-                    </div>
+
                 </div>
                 {{> pollsModalTemplate}}
             </div>
@@ -40,12 +59,19 @@
 
 <template name="messagesDoctor">
     {{#each messagesDoctor}}
-        <strong>{{username}} {{time}}:</strong> {{message}}<br>
+        {{#if czyAutor messagesDoctor}}
+            <div>
+                <h5>{{message}}</h5>
+                <h5><small>{{time}} <cite title="{{username}}">{{username}}</cite></small></h5>
+            </div>
+        {{/if}}
     {{/each}}
 </template>
 
 <template name="inputDoctor">
-    <p>Message: <input type="text" id="message"></p>
+    <div class="input-group col-xs-12">
+        <input type="text" id="message" class="form-control" placeholder="Wiadomość">
+    </div>
 </template>
 
 <template name="pollsModalTemplate">
