@@ -1,5 +1,4 @@
 html {
-    padding: 10px;
     font-family: Verdana, sans-serif;
 }
 
@@ -11,6 +10,6 @@ html {
 }
 .scrollsyn {
     width: auto;
-    height: 300px;
+    height: 320px;
     overflow: auto;
 }

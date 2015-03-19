@@ -19,4 +19,3 @@ Accounts.ui.config({
     }]
 
 });
-
