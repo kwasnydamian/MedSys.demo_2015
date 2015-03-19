@@ -23,7 +23,6 @@
     border-radius: 3px;
     padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 1px 1px rgba(0, 121, 193, 0.15);
 }
 
 .navbar { margin-bottom: 1px }
@@ -45,7 +44,6 @@
 }
 
 .container-fluid{
-    margin-bottom: 10px;
     background: #337ab7;
 }
 .panel-default > .panel-heading{
@@ -69,9 +67,9 @@ body {
     background:white;
 }
 #contentMain {
-    padding:10px;
+
     padding-bottom: 75px;   /* Height of the footer element */
-    background: #f0eeee;
+    background: #ffffff;
 }
 #patientCalendar{
     background: #ffffff;
@@ -94,5 +92,8 @@ body {
 .main{
     background:white !important;
 }
-
+div.row{
+    padding-top: 10px;
+    background: #ffffff;
+}
 
