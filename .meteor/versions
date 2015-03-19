@@ -52,7 +52,9 @@ mobile-status-bar@1.0.2
 momentjs:moment@2.8.4
 mongo@1.0.11
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
+mrt:bootstrap-select@1.5.4
 mrt:jquery-ui@1.9.2
+mrt:rtcmulticonnection@0.0.4
 npm-bcrypt@0.7.7
 observe-sequence@1.0.4
 ordered-dict@1.0.2
@@ -72,6 +74,7 @@ spacebars-compiler@1.0.4
 srp@1.0.2
 standard-app-packages@1.0.4
 stylus@1.0.6
+sunkay:easy-side-menu@1.0.1
 templating@1.0.11
 tracker@1.0.5
 tsega:bootstrap3-datetimepicker@4.0.0_4
