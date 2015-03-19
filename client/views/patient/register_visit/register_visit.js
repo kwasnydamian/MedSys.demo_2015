@@ -78,6 +78,9 @@ Template.registerVisit.events({
 
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
+    $('#przychodnie').selectpicker();
+    $('#specjalnosci').selectpicker();
+    $('#lekarze').selectpicker();
     Session.set('idLekarza','');
 
     this.autorun(function() {
@@ -86,6 +89,7 @@ Template.registerVisit.rendered = function(){
             zaladujKalendarz(Session.get('idLekarza'));
         }
     });
+
 };
 
 setPrzychodnie =  function(){
