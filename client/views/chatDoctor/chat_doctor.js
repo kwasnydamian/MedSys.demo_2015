@@ -54,6 +54,12 @@ Template.inputDoctor.events = {
 
 Template.chatDoctor.rendered = function(){
     setPacjent();
+    $('#pacjenci').selectpicker({
+        //style:'btn-info',
+        size:3,
+        header:'Pacjenci'
+    });
+    //setPacjent();
 };
 
 Template.chatDoctor.helpers({
