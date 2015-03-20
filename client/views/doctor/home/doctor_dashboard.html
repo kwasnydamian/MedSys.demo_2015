@@ -1,24 +1,7 @@
 <template name="doctorDashboard">
-    <div class="row" id="chatAndCalendar">
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-12">
-                    {{> chatDoctor}}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div id="doctorCalendar">
-
-            </div>
-            {{> doctorEventModalInfo}}
-        </div>
-    </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                <div class="panel panel-default">
+        <div class="col-md-12">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
                     <span class="pull-right"><a class="pointer">Lista <span class="fa fa-list"></span></a></span>
@@ -32,54 +15,24 @@
                     {{/each}}
                 </ul>
             </div>
-            </div>
-            </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Odbyte wizyty
-                            <span class="badge">{{iloscOdbytychWizyt}}</span>
-                            <span class="pull-right"><a class="pointer">Lista <span class="fa fa-list"></span></a></span>
-                        </div>
-                        <ul class="list-group">
-                            {{#each odbyteWizyty}}
-                                <a href="#" class="list-group-item">
-                                    {{title}}
-                                    <span class="pull-right label label-default">{{formatDate start}}</span>
-                                </a>
-                            {{/each}}
-                        </ul>
-                    </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Odbyte wizyty
+                    <span class="badge">{{iloscOdbytychWizyt}}</span>
+                    <span class="pull-right"><a class="pointer">Lista <span class="fa fa-list"></span></a></span>
                 </div>
+                <ul class="list-group">
+                    {{#each odbyteWizyty}}
+                        <a href="#" class="list-group-item">
+                            {{title}}
+                            <span class="pull-right label label-default">{{formatDate start}}</span>
+                        </a>
+                    {{/each}}
+                </ul>
             </div>
         </div>
     </div>
 </template>
 
-<template name="doctorEventModalInfo">
-    <div class="modal fade" id="doctorEventInfo" tabindex="-1" role="dialog" aria-labelledby="test" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="text-center" id="eventStart"></h4>
-                </div>
-                <div class="modal-body">
-                    <p id="eventTitle"></p>
-                    <p id="eventPatient"></p>
-                    <input type="hidden" id="idEvent" />
-                </div>
-                <div class="modal-footer">
-                    <a href="#" id="cancel" data-dismiss="modal" class="btn btn-default btn-sm">Anuluj</a>
-                    <div class="btn-group" role="group" aria-label="manageEvent">
-                        <a href="#" id="accept" class="btn btn-success btn-sm" >Akceptuj</a>
-                        <a href="#" id="reject" class="btn btn-danger btn-sm" >Odrzuć</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
