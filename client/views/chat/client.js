@@ -28,7 +28,8 @@ Template.input.events = {
                     time: moment().format("DD-MM-YYYY H:mm:ss"),
                     username: name,
                     id_patient: Meteor.userId(),
-                    id_doctor: document.getElementById('lekarze').value
+                    id_doctor: document.getElementById('lekarze').value,
+                    owner: Meteor.userId()
                 });
 
                 document.getElementById('message').value = '';

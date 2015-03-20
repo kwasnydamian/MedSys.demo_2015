@@ -103,3 +103,4 @@ Template.doctorEventModalInfo.events({
         $('#doctorEventInfo').modal('hide');
     }
 });
+

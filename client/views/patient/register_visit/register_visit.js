@@ -29,6 +29,8 @@ Template.registerVisit.events({
          lekarze.value = 0;
         $('#doctorCalendarInfo').show();
         Session.set('idLekarza','');
+        $('#specjalnosci').selectpicker('refresh');
+        $('#lekarze').selectpicker('refresh');
     },
     'change #specjalnosci': function(){
         $('#doctorCalendar').fullCalendar('destroy');
@@ -44,9 +46,14 @@ Template.registerVisit.events({
              option.value = uzytkownik._id;
              lekarze.add(option,null);
          });
-         lekarze.disabled="";
+        lekarze.disabled="";
+        if(specjalnosc==0){
+            lekarze.disabled="disabled";
+        }
+
         $('#doctorCalendarInfo').show();
         Session.set('idLekarza','');
+        $('#lekarze').selectpicker('refresh');
     },
     'change #lekarze':function(){
         var idLekarza = document.getElementById('lekarze').value;
@@ -78,7 +85,9 @@ Template.registerVisit.events({
 
 Template.registerVisit.rendered = function(){
     setPrzychodnie();
-    $('#przychodnie').selectpicker();
+    $('#przychodnie').selectpicker({
+
+    });
     $('#specjalnosci').selectpicker();
     $('#lekarze').selectpicker();
     Session.set('idLekarza','');
@@ -89,7 +98,6 @@ Template.registerVisit.rendered = function(){
             zaladujKalendarz(Session.get('idLekarza'));
         }
     });
-
 };
 
 setPrzychodnie =  function(){

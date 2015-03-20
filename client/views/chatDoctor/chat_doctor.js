@@ -11,7 +11,16 @@ Template.messagesDoctor.helpers({
             return null;
         }
       },
-    czyAutor: function(){
+    czyAutor: function(message){
+        //var mes = Messages.findOne({_id:message});
+        //var id = Meteor.userId();
+        //
+        //if(id==mes.owner){
+        //    return true;
+        //}
+        //else{
+        //    return false;
+        //}
         return true;
     }
 })
@@ -32,7 +41,8 @@ Template.inputDoctor.events = {
                     time: moment().format("DD-MM-YYYY H:mm:ss"),
                     username: name,
                     id_doctor: Meteor.userId(),
-                    id_patient: document.getElementById('pacjenci').value
+                    id_patient: document.getElementById('pacjenci').value,
+                    owner: Meteor.userId()
                 });
 
                 document.getElementById('message').value = '';
@@ -44,6 +54,12 @@ Template.inputDoctor.events = {
 
 Template.chatDoctor.rendered = function(){
     setPacjent();
+    $('#pacjenci').selectpicker({
+        //style:'btn-info',
+        size:3,
+        header:'Pacjenci'
+    });
+    //setPacjent();
 };
 
 Template.chatDoctor.helpers({
