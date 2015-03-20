@@ -1,28 +1,16 @@
 <template name="patientDashboard">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
                             Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
-                            <div class="pull-right">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                        <span class="fa fa-navicon"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation"><a href="{{pathFor 'registerVisit' }}" role="menuitem" tabindex="-1">Zarejestruj wizytę</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                         {{> umowioneWizyty}}
 
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -31,6 +19,8 @@
                         {{> ostatnieWizyty}}
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">Wyniki badań</div>
@@ -43,30 +33,6 @@
                             </a>
                         </ul>
                     </div></div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div id="patientCalendar">
-
-            </div>
-        </div>
-        {{> modalInfo}}
-    </div>
-</template>
-
-<template name="modalInfo">
-    <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="info" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id="eventTitle"></h4>
-                </div>
-                <div class="modal-body">
-                    <h6 class="label label-default" id="eventDoctor"></h6>
-                    <h6 class="label label-default pull-right" id="eventStart"></h6>
-                    <h5 id="eventDescription"></h5>
-                </div>
             </div>
         </div>
     </div>
