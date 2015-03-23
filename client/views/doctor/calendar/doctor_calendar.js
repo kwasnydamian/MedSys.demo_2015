@@ -2,6 +2,9 @@
  * Created by damian on 20.03.15.
  */
 Template.doctorCalendarTemplate.rendered = function(){
+    Session.set('idPollPatient','');
+    Session.set('idPoll','');
+    Session.set('idPacjenta','');
     this.autorun(function() {
         $('#doctorCalendar').fullCalendar('refetchEvents');
         $('#doctorCalendar').fullCalendar({

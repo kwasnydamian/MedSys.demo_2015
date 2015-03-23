@@ -49,6 +49,7 @@ article, article:after, #nav, #nav *
     margin-left: -30px;
     color:#fff;
 }
+
  #nav ul li:hover, #nav ul li *
 {
     -webkit-transition: all 0ms ease;

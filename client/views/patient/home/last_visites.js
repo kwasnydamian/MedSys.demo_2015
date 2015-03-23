@@ -10,3 +10,6 @@ Template.ostatnieWizyty.helpers({
 Template.registerHelper('formatDate',function(date){
     return moment(date).format('DD-MM-YYYY');
 });
+Template.registerHelper('formatDateHour',function(date){
+    return moment(date).format('DD-MM-YYYY HH:mm');
+});

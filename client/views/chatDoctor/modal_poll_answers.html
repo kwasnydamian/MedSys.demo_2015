@@ -1,0 +1,24 @@
+<template name="pollAnswersModalTemplate">
+    <div class="modal fade" id="pollAnswersModal" tabindex="-1" role="dialog" aria-labelledby="pollAnswersModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">Ankieta {{#each nazwaAnkiety}}{{nazwa}}{{/each}} </h4>
+                </div>
+                <div class="modal-body">
+                    {{#each answers}}
+                        <h4>{{pytanie}}</h4><br />
+                        <p>{{odpowiedz}}</p>
+                    {{/each}}
+                </div>
+                <form id="answersInfoForm" class="clearfix">
+                    <div class="modal-footer">
+                        <input id="idPollPatient" name="idPollPatient" type="hidden" value="{{idPollPatient}}"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

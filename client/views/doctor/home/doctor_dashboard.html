@@ -1,38 +1,48 @@
 <template name="doctorDashboard">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
                     <span class="pull-right"><a class="pointer">Lista <span class="fa fa-list"></span></a></span>
                 </div>
-                <ul class="list-group">
+                <div class="list-group">
                     {{#each umowioneWizyty}}
                         <a href="#" class="list-group-item">
-                            {{title}}
-                            <span class="pull-right label label-default">{{formatDate start}}</span>
+                            <h5 class="list-group-item-heading"> {{formatDateHour start}}</h5>
+                            <p class="list-group-item-text">{{title}}</p>
                         </a>
                     {{/each}}
-                </ul>
+                </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Odbyte wizyty
                     <span class="badge">{{iloscOdbytychWizyt}}</span>
                     <span class="pull-right"><a class="pointer">Lista <span class="fa fa-list"></span></a></span>
                 </div>
-                <ul class="list-group">
+                <div class="list-group">
                     {{#each odbyteWizyty}}
                         <a href="#" class="list-group-item">
-                            {{title}}
-                            <span class="pull-right label label-default">{{formatDate start}}</span>
+                            <h5 class="list-group-item-heading"> {{formatDateHour start}}</h5>
+                            <p class="list-group-item-text">{{title}}</p>
                         </a>
                     {{/each}}
-                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                {{> wszystkieWizyty}}
             </div>
         </div>
     </div>
 </template>
 
+<template name="wszystkieWizyty">
+     <div id="wszystkie">
+
+     </div>
+</template>
