@@ -56,8 +56,7 @@ Template.chatDoctor.rendered = function(){
     setPacjent();
     $('#pacjenci').selectpicker({
         //style:'btn-info',
-        size:3,
-        header:'Pacjenci'
+        size:3
     });
     //setPacjent();
 };
@@ -85,7 +84,15 @@ Template.chatDoctor.events({
         Session.set('idPacjenta',idPacjenta);
     },
     'click #pollsModalButton':function(){
-       // alert("");
+
+    },
+    'click .pollItem':function(event){
+        var target = event.currentTarget;
+        pollPatient = PollsPatients.findOne({_id:target.id});
+        Session.set('idPollPatient',pollPatient._id);
+        Session.set('idPoll',pollPatient.id_ankieta);
+
+        $("#pollAnswersModal").modal("show");
     }
 })
 

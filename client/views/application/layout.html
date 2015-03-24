@@ -1,5 +1,10 @@
 <template name="layout">
     <body>
+    {{#if currentUser}}
+        <div id="navDiv">
+            {{> leftNav}}
+        </div>
+    {{/if}}
     <div id="wrapper" >
         <div id="headerMain">
             {{> header}}
@@ -13,7 +18,9 @@
         </div>
         <div id="footerMain">
             <div class="panel-footer">
-                <p><span class="fa fa-copyright"></span> created by OneBI</p>
+                <div id="footerContainer">
+                    <p><span class="fa fa-copyright"></span> created by OneBI 2015</p>
+                </div>
             </div>
         </div>
     </div>

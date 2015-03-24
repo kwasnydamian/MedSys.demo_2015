@@ -3,104 +3,97 @@
  */
 Template.doctorDashboard.helpers({
    umowioneWizyty:function(){
-       return Wizyty.find({id_lekarz:Meteor.userId(),start:{$gte:moment().format()}},{limit:5});
+       return Wizyty.find({id_lekarz:Meteor.userId(),isAvailable:true,start:{$gte:moment().format()}},{limit:5});
    },
     odbyteWizyty:function(){
-        return Wizyty.find({id_lekarz:Meteor.userId(),start:{$lt:moment().format()}},{limit:5});
+        return Wizyty.find({id_lekarz:Meteor.userId(),isAvailable:true,start:{$lt:moment().format()}},{limit:5});
     },
     iloscUmowionychWizyt:function(){
-        return Wizyty.find({id_lekarz:Meteor.userId(),start:{$gte:moment().format()}}).count();
+        return Wizyty.find({id_lekarz:Meteor.userId(),isAvailable:true,start:{$gte:moment().format()}}).count();
     },
     iloscOdbytychWizyt:function(){
-        return Wizyty.find({id_lekarz:Meteor.userId(),start:{$lt:moment().format()}}).count();
+        return Wizyty.find({id_lekarz:Meteor.userId(),isAvailable:true,start:{$lt:moment().format()}}).count();
     }
 });
 
-Template.doctorDashboard.rendered = function(){
-    this.autorun(function() {
-        $('#doctorCalendar').fullCalendar('refetchEvents');
-        $('#doctorCalendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            allDaySlot:false,
-            height:462,
-            minTime: "06:00:00",
-            maxTime: "20:00:00",
-            slotEventOverlap: true,
-            lang: 'pl',
-            weekends: true,
-            defaultView: 'agendaWeek',
-            eventLimit: true,
-            editable: true,
-            events: function (start, end, timezone, callback) {
-                var events = [];
-                var calendar = Wizyty.find({id_lekarz: Meteor.userId(),isAvailable:true});
-                if (calendar) {
-                    calendar.forEach(function (event) {
-                        eventDetails = {};
-                        for (key in event)
-                            eventDetails[key] = event[key];
-                        events.push(eventDetails);
-                    });
-                }
-                callback(events);
-            },
-            eventMouseover: function (event, jsEvent, view) {
+Template.wszystkieWizyty.rendered = function() {
+    Session.set('idPollPatient','');
+    Session.set('idPoll','');
+    Session.set('idPacjenta','');
+    document.getElementsByTagName('text').html="";
+    this.autorun(function(){
+        var wszystkie = [];
+        var odrzucone = [];
+        var doZaakceptowania = [];
 
-            },
-            eventMouseout: function (event, jsEvent, view) {
+        var data = moment().month("January");
+        data = moment(data).date(1);
+        data = moment(data).hour(00);
+        data = moment(data).minutes(00);
+        data = moment(data).seconds(00);
 
-            },
-            eventRender: function (event, element) {
-                if(!event.isAccepted){
-                    element.css("background-color","#E34234");
-                    element.css("border-color","#E32636");
-                }
+        for(i=0;i<12;i++){
+            var itemWszystkie = Wizyty.find({id_lekarz:Meteor.userId(),start:{$gte:moment(data).format(),$lt:moment(data).add(1,'months').format()}}).count();
+            wszystkie.push(itemWszystkie);
 
-                element.bind('click', function () {
-                    var firstName = "";
-                    var lastName = "";
-                    Uzytkownicy.find({'_id': event.id_pacjent}, {
-                        fields: {'profile.firstName': 1, 'profile.lastName': 1}
-                    }).forEach(function (user) {
-                        firstName = user.profile.firstName;
-                        lastName = user.profile.lastName;
-                    });
-                    $('#doctorEventInfo').modal('show');
-                    $("#eventTitle").html(event.title);
-                    var start = moment(event.start).format("DD-MM-YYYY HH:mm");
-                    $("#eventStart").html(start);
-                    $("#eventPatient").html(lastName + " " + firstName);
-                    $("#idEvent").val(event._id);
-                });
+            var itemOdrzucone = Wizyty.find({id_lekarz:Meteor.userId(),start:{$gte:moment(data).format(),$lt:moment(data).add(1,'months').format()},isAccepted:false,isAvailable:false}).count();
+            odrzucone.push(itemOdrzucone);
+
+            var itemDoZaakceptowania = Wizyty.find({id_lekarz:Meteor.userId(),start:{$gte:moment(data).format(),$lt:moment(data).add(1,'months').format()},isAccepted:false,isAvailable:true}).count();
+            doZaakceptowania.push(itemDoZaakceptowania);
+
+            var data = moment(data).add(1,'months');
+        }
+
+        $('#wszystkie').highcharts({
+            title: {
+                text: 'Wizyty',
+                x: -20 //center
             },
-            eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
-                var end = moment(event.end).format();
-                var id = Wizyty.update({_id: event._id}, {$set: {end: end}});
+            subtitle: {
+                text: '',
+                x: -20
             },
-            eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
-                var end = moment(event.end).format();
-                var start = moment(event.start).format();
-                var id = Wizyty.update({_id: event._id}, {$set: {end: end, start: start}});
+            xAxis: {
+                categories: ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze',
+                    'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru']
+            },
+            yAxis: {
+                title: {
+                    text: 'Ilość wizyt'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'wszystkie',
+                data: wszystkie
+            },
+            {
+                name:'odrzucone',
+                data: odrzucone
+            },
+            {
+                name:'do zaakceptowania',
+                data: doZaakceptowania
+            }],
+            credits:{
+                enabled:false
             }
         });
     });
-}
+};
 
-Template.doctorEventModalInfo.events({
-    'click #reject':function(){
-        var idEvent = document.getElementById('idEvent').value;
-        //Wizyty.remove({_id:idEvent});
-        Wizyty.update({_id:idEvent},{$set:{isAvailable:false}});
-        $('#doctorEventInfo').modal('hide');
-    },
-    'click #accept':function(){
-        var idEvent = document.getElementById('idEvent').value;
-        Wizyty.update({_id:idEvent},{$set:{isAccepted:true}});
-        $('#doctorEventInfo').modal('hide');
-    }
-});
 

@@ -11,11 +11,9 @@ Template.loginTemplate.events({
             login: login,
             password: password
         }
-        console.log(user.login);
         if (isNotEmpty(user.login) && isNotEmpty2(user.password)) {
             Meteor.loginWithPassword(user.login, user.password, function(err) {
                 if (err) {
-                    console.log(err.message);
                     return alert ('Niepoprawne dane logowania.');
                 } else {
                     if(Meteor.loggingIn()) {

@@ -1,0 +1,33 @@
+<template name="doctorCalendarTemplate">
+    <div class="col-md-12">
+        <div id="doctorCalendar">
+
+        </div>
+        {{> doctorEventModalInfo}}
+    </div>
+</template>
+
+<template name="doctorEventModalInfo">
+    <div class="modal fade" id="doctorEventInfo" tabindex="-1" role="dialog" aria-labelledby="test" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="text-center" id="eventStart"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="eventTitle"></p>
+                    <p id="eventPatient"></p>
+                    <input type="hidden" id="idEvent" />
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="cancel" data-dismiss="modal" class="btn btn-default btn-sm">Anuluj</a>
+                    <div class="btn-group" role="group" aria-label="manageEvent">
+                        <a href="#" id="accept" class="btn btn-success btn-sm" >Akceptuj</a>
+                        <a href="#" id="reject" class="btn btn-danger btn-sm" >Odrzuć</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
