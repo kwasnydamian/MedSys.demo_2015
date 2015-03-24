@@ -3,61 +3,74 @@
         <ul>
             {{#if isPatientUser}}
                 <a href="{{pathFor 'home' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Strona główna</span>
-                        <span class="pull-right fa fa-home fa-inverse"></span>
+                        <span class="pull-right fa fa-home"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'patientCalendarTemplate' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Terminarz</span>
-                        <span class="pull-right fa fa-calendar fa-inverse"></span>
+                        <span class="pull-right fa fa-calendar"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'registerVisit' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Zarejestruj wizytę</span>
-                        <span class="pull-right fa fa-heart fa-inverse"></span>
+                        <span class="pull-right fa fa-heart"></span>
                     </li>
                 </a>
             {{/if}}
             {{#if isDoctorUser}}
                 <a href="{{pathFor 'home' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Strona główna</span>
-                        <span class="pull-right fa fa-home fa-inverse"></span>
+                        <span class="pull-right fa fa-home"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'doctorCalendarTemplate' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Terminarz</span>
-                        <span class="pull-right fa fa-calendar fa-inverse"></span>
+                        <span class="pull-right fa fa-calendar"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'consultationTemplate' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Konsultacje</span>
-                        <span class="pull-right fa fa-wechat fa-inverse"></span>
+                        <span class="pull-right fa fa-wechat "></span>
                     </li>
                 </a>
+                <!--<a href="{{pathFor 'videoTemplate' }}">-->
+                    <!--<li>-->
+                        <!--<span>Video</span>-->
+                        <!--<span class="pull-right fa fa-video-camera"></span>-->
+                    <!--</li>-->
+                <!--</a>-->
+
             {{/if}}
             {{#if isAdminUser}}
                 <a href="{{pathFor 'home' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Strona główna</span>
-                        <span class="pull-right fa fa-home fa-inverse"></span>
+                        <span class="pull-right fa fa-home"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'adminTemplate' }}">
-                    <li>
+                    <li class="navLi">
                         <span>Zarządzanie rolami</span>
-                        <span class="pull-right fa fa-wechat fa-inverse"></span>
+                        <span class="pull-right fa fa-magic"></span>
+                    </li>
+                </a>
+                <a href="{{pathFor 'statsTemplate' }}">
+                    <li class="navLi">
+                        <span>Statystyki </span>
+                        <span class="pull-right fa fa-line-chart"></span>
                     </li>
                 </a>
                 <a href="#">
-                    <li>
+                    <li class="navLi">
                         <span>Ustawienia systemu</span>
-                        <span class="pull-right fa fa-cogs fa-inverse"></span>
+                        <span class="pull-right fa fa-cogs"></span>
                     </li>
                 </a>
             {{/if}}
