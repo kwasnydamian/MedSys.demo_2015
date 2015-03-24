@@ -40,6 +40,12 @@
                         <span class="pull-right fa fa-wechat fa-inverse"></span>
                     </li>
                 </a>
+                <!--<a href="{{pathFor 'videoTemplate' }}">-->
+                    <!--<li>-->
+                        <!--<span>Video</span>-->
+                        <!--<span class="pull-right fa fa-video-camera fa-inverse"></span>-->
+                    <!--</li>-->
+                <!--</a>-->
             {{/if}}
             {{#if isAdminUser}}
                 <a href="{{pathFor 'home' }}">
@@ -51,7 +57,13 @@
                 <a href="{{pathFor 'adminTemplate' }}">
                     <li>
                         <span>Zarządzanie rolami</span>
-                        <span class="pull-right fa fa-wechat fa-inverse"></span>
+                        <span class="pull-right fa fa-magic fa-inverse"></span>
+                    </li>
+                </a>
+                <a href="{{pathFor 'statsTemplate' }}">
+                    <li>
+                        <span>Statystyki </span>
+                        <span class="pull-right fa fa-line-chart fa-inverse"></span>
                     </li>
                 </a>
                 <a href="#">
