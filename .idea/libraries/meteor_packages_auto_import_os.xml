@@ -8,12 +8,12 @@
         <item url="file://$USER_HOME$/.meteor/packages/random/1.0.2/os/packages/random.js" />
         <item url="file://$USER_HOME$/.meteor/packages/check/1.0.4/os/packages/check.js" />
         <item url="file://$USER_HOME$/.meteor/packages/standard-app-packages/1.0.4/os/packages/standard-app-packages.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/launch-screen/1.0.1/os/packages/launch-screen.js" />
         <item url="file://$USER_HOME$/.meteor/packages/http/1.0.10/os/packages/http.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/launch-screen/1.0.1/os/packages/launch-screen.js" />
         <item url="file://$USER_HOME$/.meteor/packages/reactive-var/1.0.4/os/packages/reactive-var.js" />
         <item url="file://$USER_HOME$/.meteor/packages/stylus/1.0.6/os/packages/stylus.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.2/os/packages/geojson-utils.js" />
         <item url="file://$USER_HOME$/.meteor/packages/id-map/1.0.2/os/packages/id-map.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.2/os/packages/geojson-utils.js" />
         <item url="file://$USER_HOME$/.meteor/packages/srp/1.0.2/os/packages/srp.js" />
         <item url="file://$USER_HOME$/.meteor/packages/blaze/2.0.4/os/packages/blaze.js" />
         <item url="file://$USER_HOME$/.meteor/packages/observe-sequence/1.0.4/os/packages/observe-sequence.js" />
@@ -43,12 +43,12 @@
         <item url="file://$USER_HOME$/.meteor/packages/livedata/1.0.12/os/packages/livedata.js" />
         <item url="file://$USER_HOME$/.meteor/packages/ddp/1.0.14/os/packages/ddp.js" />
         <item url="file://$USER_HOME$/.meteor/packages/application-configuration/1.0.4/os/packages/application-configuration.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/deps/1.0.6/os/packages/deps.js" />
         <item url="file://$USER_HOME$/.meteor/packages/url/1.0.3/os/packages/url.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/deps/1.0.6/os/packages/deps.js" />
         <item url="file://$USER_HOME$/.meteor/packages/localstorage/1.0.2/os/packages/localstorage.js" />
         <item url="file://$USER_HOME$/.meteor/packages/reload/1.1.2/os/packages/reload.js" />
-        <item url="file://$USER_HOME$/.meteor/packages/logging/1.0.6/os/packages/logging.js" />
         <item url="file://$USER_HOME$/.meteor/packages/ejson/1.0.5/os/packages/ejson.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/logging/1.0.6/os/packages/logging.js" />
         <item url="file://$USER_HOME$/.meteor/packages/ui/1.0.5/os/packages/ui.js" />
       </sourceFilesUrls>
     </properties>
@@ -56,11 +56,11 @@
       <root url="file://$USER_HOME$/.meteor/packages/htmljs/1.0.3/os/packages/htmljs.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.0.5/os/packages/tracker.js" />
       <root url="file://$USER_HOME$/.meteor/packages/standard-app-packages/1.0.4/os/packages/standard-app-packages.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/http/1.0.10/os/packages/http.js" />
       <root url="file://$USER_HOME$/.meteor/packages/launch-screen/1.0.1/os/packages/launch-screen.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/http/1.0.10/os/packages/http.js" />
       <root url="file://$USER_HOME$/.meteor/packages/stylus/1.0.6/os/packages/stylus.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/id-map/1.0.2/os/packages/id-map.js" />
       <root url="file://$USER_HOME$/.meteor/packages/geojson-utils/1.0.2/os/packages/geojson-utils.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/id-map/1.0.2/os/packages/id-map.js" />
       <root url="file://$USER_HOME$/.meteor/packages/srp/1.0.2/os/packages/srp.js" />
       <root url="file://$USER_HOME$/.meteor/packages/insecure/1.0.2/os/packages/insecure.js" />
       <root url="file://$USER_HOME$/.meteor/packages/handlebars/1.0.2/os/packages/handlebars.js" />
@@ -79,11 +79,11 @@
       <root url="file://$USER_HOME$/.meteor/packages/underscore/1.0.2/os/packages/underscore.js" />
       <root url="file://$USER_HOME$/.meteor/packages/livedata/1.0.12/os/packages/livedata.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ddp/1.0.14/os/packages/ddp.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/url/1.0.3/os/packages/url.js" />
       <root url="file://$USER_HOME$/.meteor/packages/deps/1.0.6/os/packages/deps.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/url/1.0.3/os/packages/url.js" />
       <root url="file://$USER_HOME$/.meteor/packages/localstorage/1.0.2/os/packages/localstorage.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/ejson/1.0.5/os/packages/ejson.js" />
       <root url="file://$USER_HOME$/.meteor/packages/logging/1.0.6/os/packages/logging.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/ejson/1.0.5/os/packages/ejson.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ui/1.0.5/os/packages/ui.js" />
       <root url="file://$USER_HOME$/.meteor/packages/callback-hook/1.0.2/os/packages/callback-hook.js" />
       <root url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.0.5/os/packages/reactive-dict.js" />

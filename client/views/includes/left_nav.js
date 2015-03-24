@@ -11,4 +11,17 @@ Template.leftNav.helpers({
     isDoctorUser: function(){
         return Roles.userIsInRole(Meteor.user(),['doctor'])
     }
-})
+});
+
+Template.leftNav.rendered=function(){
+    this.autorun(function(){
+        $('li.navLi').on('click',function(item){
+            var selector = document.getElementsByClassName('navLi');
+            console.log(selector.length);
+            for (var i = 0; i < selector.length; i++){
+                selector[i].style.color = "#999";
+            }
+            $(this).attr("style","color:white;");
+        })
+    });
+};

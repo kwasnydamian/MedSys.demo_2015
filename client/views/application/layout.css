@@ -50,6 +50,13 @@ article, article:after, #nav, #nav *
     color:#fff;
 }
 
+#nav ul li:active{
+    color:#999;
+}
+
+.current{
+    color:#fff;
+}
  #nav ul li:hover, #nav ul li *
 {
     -webkit-transition: all 0ms ease;
