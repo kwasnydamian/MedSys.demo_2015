@@ -15,9 +15,8 @@ Template.leftNav.helpers({
 
 Template.leftNav.rendered=function(){
     this.autorun(function(){
-        $('li.navLi').on('click',function(item){
+        $('li.navLi').on('click',function(){
             var selector = document.getElementsByClassName('navLi');
-            console.log(selector.length);
             for (var i = 0; i < selector.length; i++){
                 selector[i].style.color = "#999";
             }
