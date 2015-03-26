@@ -1,38 +1,43 @@
 <template name="patientDashboard">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
-                            Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
-                        </div>
-                        {{> umowioneWizyty}}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Pacjent<small> główna</small></h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
+                            </div>
+                            {{> umowioneWizyty}}
 
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Odbyte wizyty <span class="badge">{{iloscOstatnichWizyt}}</span>
                         </div>
-                        {{> ostatnieWizyty}}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Odbyte wizyty <span class="badge">{{iloscOstatnichWizyt}}</span>
+                            </div>
+                            {{> ostatnieWizyty}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Wyniki badań</div>
-                        <ul class="list-group">
-                            <a href="#" class="list-group-item">
-                                Morfologia
-                            </a>
-                            <a href="#" class="list-group-item">
-                                Rezonans magnetyczny (opis)
-                            </a>
-                        </ul>
-                    </div></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Wyniki badań</div>
+                            <ul class="list-group">
+                                <a href="#" class="list-group-item">
+                                    Morfologia
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    Rezonans magnetyczny (opis)
+                                </a>
+                            </ul>
+                        </div></div>
+                </div>
             </div>
         </div>
     </div>

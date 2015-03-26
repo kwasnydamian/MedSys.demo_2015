@@ -14,7 +14,6 @@ Template.doctorCalendarTemplate.rendered = function(){
                 right: 'month,agendaWeek,agendaDay'
             },
             allDaySlot:false,
-            height:462,
             minTime: "06:00:00",
             maxTime: "20:00:00",
             slotEventOverlap: true,
