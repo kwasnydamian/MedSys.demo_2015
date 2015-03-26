@@ -45,10 +45,13 @@
         <item url="file://$USER_HOME$/.meteor/packages/ddp/1.0.14/os/packages/ddp.js" />
         <item url="file://$USER_HOME$/.meteor/packages/url/1.0.3/os/packages/url.js" />
         <item url="file://$USER_HOME$/.meteor/packages/deps/1.0.6/os/packages/deps.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/url/1.0.3/os/packages/url.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/localstorage/1.0.2/os/packages/localstorage.js" />
         <item url="file://$USER_HOME$/.meteor/packages/reload/1.1.2/os/packages/reload.js" />
         <item url="file://$USER_HOME$/.meteor/packages/localstorage/1.0.2/os/packages/localstorage.js" />
         <item url="file://$USER_HOME$/.meteor/packages/ejson/1.0.5/os/packages/ejson.js" />
         <item url="file://$USER_HOME$/.meteor/packages/logging/1.0.6/os/packages/logging.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/ejson/1.0.5/os/packages/ejson.js" />
         <item url="file://$USER_HOME$/.meteor/packages/ui/1.0.5/os/packages/ui.js" />
       </sourceFilesUrls>
     </properties>
@@ -79,11 +82,11 @@
       <root url="file://$USER_HOME$/.meteor/packages/underscore/1.0.2/os/packages/underscore.js" />
       <root url="file://$USER_HOME$/.meteor/packages/livedata/1.0.12/os/packages/livedata.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ddp/1.0.14/os/packages/ddp.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/deps/1.0.6/os/packages/deps.js" />
       <root url="file://$USER_HOME$/.meteor/packages/url/1.0.3/os/packages/url.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/deps/1.0.6/os/packages/deps.js" />
       <root url="file://$USER_HOME$/.meteor/packages/localstorage/1.0.2/os/packages/localstorage.js" />
-      <root url="file://$USER_HOME$/.meteor/packages/logging/1.0.6/os/packages/logging.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ejson/1.0.5/os/packages/ejson.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/logging/1.0.6/os/packages/logging.js" />
       <root url="file://$USER_HOME$/.meteor/packages/ui/1.0.5/os/packages/ui.js" />
       <root url="file://$USER_HOME$/.meteor/packages/callback-hook/1.0.2/os/packages/callback-hook.js" />
       <root url="file://$USER_HOME$/.meteor/packages/reactive-dict/1.0.5/os/packages/reactive-dict.js" />

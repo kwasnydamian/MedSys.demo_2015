@@ -1,33 +1,17 @@
 <template name="leftNav">
     <div id="nav">
         <ul>
-            {{#if isPatientUser}}
-                <a href="{{pathFor 'home' }}">
-                    <li class="navLi">
-                        <span>Strona główna</span>
-                        <span class="pull-right fa fa-home"></span>
-                    </li>
-                </a>
-                <a href="{{pathFor 'patientCalendarTemplate' }}">
-                    <li class="navLi">
-                        <span>Terminarz</span>
-                        <span class="pull-right fa fa-calendar"></span>
-                    </li>
-                </a>
-                <a href="{{pathFor 'registerVisit' }}">
-                    <li class="navLi">
-                        <span>Zarejestruj wizytę</span>
-                        <span class="pull-right fa fa-heart"></span>
-                    </li>
-                </a>
-            {{/if}}
+            <a href="{{pathFor 'home' }}">
+                <li class="navLi">
+                    <span>Strona główna</span>
+                    <span class="pull-right fa fa-home"></span>
+                </li>
+            </a>
             {{#if isDoctorUser}}
-                <a href="{{pathFor 'home' }}">
-                    <li class="navLi">
-                        <span>Strona główna</span>
-                        <span class="pull-right fa fa-home"></span>
-                    </li>
-                </a>
+                <div class="navLiDoctor">
+                    <span>LEKARZ</span>
+                    <span class="pull-right fa fa-stethoscope"></span>
+                </div>
                 <a href="{{pathFor 'doctorCalendarTemplate' }}">
                     <li class="navLi">
                         <span>Terminarz</span>
@@ -41,20 +25,36 @@
                     </li>
                 </a>
                 <!--<a href="{{pathFor 'videoTemplate' }}">-->
-                    <!--<li>-->
-                        <!--<span>Video</span>-->
-                        <!--<span class="pull-right fa fa-video-camera"></span>-->
-                    <!--</li>-->
+                <!--<li>-->
+                <!--<span>Video</span>-->
+                <!--<span class="pull-right fa fa-video-camera"></span>-->
+                <!--</li>-->
                 <!--</a>-->
 
             {{/if}}
-            {{#if isAdminUser}}
-                <a href="{{pathFor 'home' }}">
+            {{#if isPatientUser}}
+                <div class="navLiDoctor">
+                    <span>PACJENT</span>
+                    <span class="pull-right fa fa-male"></span>
+                </div>
+                <a href="{{pathFor 'patientCalendarTemplate' }}">
                     <li class="navLi">
-                        <span>Strona główna</span>
-                        <span class="pull-right fa fa-home"></span>
+                        <span>Terminarz</span>
+                        <span class="pull-right fa fa-calendar"></span>
                     </li>
                 </a>
+                <a href="{{pathFor 'registerVisit' }}">
+                    <li class="navLi">
+                        <span>Zarejestruj wizytę</span>
+                        <span class="pull-right fa fa-heart"></span>
+                    </li>
+                </a>
+            {{/if}}
+            {{#if isAdminUser}}
+                <div class="navLiDoctor">
+                    <span>ADMINISTRATOR</span>
+                    <span class="pull-right fa fa-star"></span>
+                </div>
                 <a href="{{pathFor 'adminTemplate' }}">
                     <li class="navLi">
                         <span>Zarządzanie rolami</span>
@@ -65,6 +65,12 @@
                     <li class="navLi">
                         <span>Statystyki </span>
                         <span class="pull-right fa fa-line-chart"></span>
+                    </li>
+                </a>
+                <a href="{{pathFor 'addUserTemplate'}}">
+                    <li class="navLi">
+                        <span>Dodaj użytkownika</span>
+                        <span class="pull-right fa fa-user"></span>
                     </li>
                 </a>
                 <a href="#">

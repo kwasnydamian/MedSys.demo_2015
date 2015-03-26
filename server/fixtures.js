@@ -50,7 +50,8 @@ if(Meteor.users.find().count()===0){
           'firstName': "Admin",
            'lastName': "Admin",
            'isDoctor':false,
-           'isPatient':false
+           'isPatient':false,
+           'name':'Administrator'
         }
 
     });
@@ -66,7 +67,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': proktolog,
-            'id_klinika': medicor
+            'id_klinika': medicor,
+            'name':'Kot Damian'
         }
     });
     Roles.setUserRoles(damian,'doctor');
@@ -80,7 +82,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': neurolog,
-            'id_klinika': medicor
+            'id_klinika': medicor,
+            'name':'Pies Dorian'
         }
     });
     Roles.setUserRoles(dorian,'doctor');
@@ -94,7 +97,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': neurolog,
-            'id_klinika':wojskowy
+            'id_klinika':wojskowy,
+            'name':'Jaśkiewicz Robert'
         }
     });
     Roles.setUserRoles(robert,'doctor');
@@ -108,7 +112,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': neurolog,
-            'id_klinika':wojskowy
+            'id_klinika':wojskowy,
+            'name':'Błażusiak Marian'
         }
     });
     Roles.setUserRoles(marian,'doctor');
@@ -122,7 +127,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': kardiolog,
-            'id_klinika': prywatnaKlinika
+            'id_klinika': prywatnaKlinika,
+            'name':'Zakrzewska Teresa'
         }
     });
     Roles.setUserRoles(teresa,'doctor');
@@ -136,7 +142,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': kardiolog,
-            'id_klinika': prywatnaKlinika
+            'id_klinika': prywatnaKlinika,
+            'name':'Pies Krystyna'
         }
     });
     Roles.setUserRoles(krystyna,'doctor');
@@ -150,7 +157,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': proktolog,
-            'id_klinika': klinikaKrakowska
+            'id_klinika': klinikaKrakowska,
+            'name':'Jarosz Tomasz'
         }
     });
     Roles.setUserRoles(tomasz,'doctor');
@@ -164,7 +172,8 @@ if(Meteor.users.find().count()===0){
             'isDoctor':true,
             'isPatient':false,
             'id_specjalnosc': proktolog,
-            'id_klinika': klinikaKrakowska
+            'id_klinika': klinikaKrakowska,
+            'name':'Skowron Adam'
         }
     });
     Roles.setUserRoles(adam,'doctor');
@@ -177,7 +186,8 @@ if(Meteor.users.find().count()===0){
             'firstName': "Paweł",
             'lastName': "Kowalski",
             'isDoctor':false,
-            'isPatient':true
+            'isPatient':true,
+            'name':'Kowalski Paweł'
         }
     });
     Roles.setUserRoles(pawel,'patient');

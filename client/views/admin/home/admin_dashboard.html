@@ -1,30 +1,35 @@
 <template name="adminDashboard">
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-                <thead class="bg-dark fg-white">
-                    <tr>
-                        <th class="border-lightDark">Status</th>
-                        <th class="border-lightDark">Użytkownik</th>
-                        <th class="border-lightDark">Ostatnia aktywność</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each usersStatus}}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Administrator<small> główna</small></h1>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead class="bg-dark fg-white">
                         <tr>
-                            <td>
-                                {{#if status.online}}
-                                    <span class="fa fa-circle text-success"></span>
-                                {{else}}
-                                    <span class="fa fa-circle-thin"></span>
-                                {{/if}}
-                            </td>
-                            <td>{{profile.lastName}} {{profile.firstName}} ({{username}})</td>
-                            <td>{{formatLongDate status.lastLogin.date}}</td>
+                            <th class="border-lightDark">Status</th>
+                            <th class="border-lightDark">Użytkownik</th>
+                            <th class="border-lightDark">Ostatnia aktywność</th>
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {{#each usersStatus}}
+                            <tr>
+                                <td>
+                                    {{#if status.online}}
+                                        <span class="fa fa-circle text-success"></span>
+                                    {{else}}
+                                        <span class="fa fa-circle-thin"></span>
+                                    {{/if}}
+                                </td>
+                                <td>{{profile.lastName}} {{profile.firstName}} ({{username}})</td>
+                                <td>{{formatLongDate status.lastLogin.date}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>

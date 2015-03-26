@@ -19,3 +19,6 @@ Accounts.ui.config({
     }]
 
 });
+
+i18n.setLanguage('pl');
+
