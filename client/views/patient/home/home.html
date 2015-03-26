@@ -1,11 +1,11 @@
 <template name="home">
-    {{#if isInRole 'admin'}}
-        {{> adminDashboard}}
+    {{#if isInRole 'doctor'}}
+        {{> doctorDashboard }}
     {{/if}}
     {{#if isInRole 'patient'}}
         {{> patientDashboard}}
     {{/if}}
-    {{#if isInRole 'doctor'}}
-        {{> doctorDashboard }}
+    {{#if isInRole 'admin'}}
+        {{> adminDashboard}}
     {{/if}}
 </template>

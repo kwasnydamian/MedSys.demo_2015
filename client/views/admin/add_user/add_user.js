@@ -34,7 +34,8 @@ Template.addUserTemplate.events({
                firstName:firstName,
                lastName: lastName,
                isDoctor: isDoctor,
-               isPatient: isPatient
+               isPatient: isPatient,
+               name: lastName+" "+firstName
            }
        }
 

@@ -1,41 +1,46 @@
 <template name="doctorDashboard">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
-                    <span class="pull-right"><a href="{{pathFor 'umowioneWizytyDoctorTable'}}" class="pointer">Lista <span class="fa fa-list"></span></a></span>
-                </div>
-                <div class="list-group">
-                    {{#each umowioneWizyty}}
-                        <a href="#" class="list-group-item">
-                            <h5 class="list-group-item-heading"> {{formatDateHour start}}</h5>
-                            <p class="list-group-item-text">{{title}}</p>
-                        </a>
-                    {{/each}}
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1>Lekarz<small> główna</small></h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Umówione wizyty <span class="badge">{{iloscUmowionychWizyt}}</span>
+                        <span class="pull-right"><a href="{{pathFor 'umowioneWizytyDoctorTable'}}" class="pointer">Lista <span class="fa fa-list"></span></a></span>
+                    </div>
+                    <div class="list-group">
+                        {{#each umowioneWizyty}}
+                            <a href="#" class="list-group-item">
+                                <h5 class="list-group-item-heading"> {{formatDateHour start}}</h5>
+                                <p class="list-group-item-text">{{title}}</p>
+                            </a>
+                        {{/each}}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Odbyte wizyty
-                    <span class="badge">{{iloscOdbytychWizyt}}</span>
-                    <span class="pull-right"><a href="{{pathFor 'odbyteWizytyDoctorTable'}}" class="pointer">Lista <span class="fa fa-list"></span></a></span>
-                </div>
-                <div class="list-group">
-                    {{#each odbyteWizyty}}
-                        <a href="#" class="list-group-item">
-                            <h5 class="list-group-item-heading"> {{formatDateHour start}}</h5>
-                            <p class="list-group-item-text">{{title}}</p>
-                        </a>
-                    {{/each}}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Odbyte wizyty
+                        <span class="badge">{{iloscOdbytychWizyt}}</span>
+                        <span class="pull-right"><a href="{{pathFor 'odbyteWizytyDoctorTable'}}" class="pointer">Lista <span class="fa fa-list"></span></a></span>
+                    </div>
+                    <div class="list-group">
+                        {{#each odbyteWizyty}}
+                            <a href="#" class="list-group-item">
+                                <h5 class="list-group-item-heading"> {{formatDateHour start}}</h5>
+                                <p class="list-group-item-text">{{title}}</p>
+                            </a>
+                        {{/each}}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="row">
-                {{> wszystkieWizyty}}
+            <div class="col-md-12">
+                <div class="row">
+                    {{> wszystkieWizyty}}
+                </div>
             </div>
         </div>
     </div>
