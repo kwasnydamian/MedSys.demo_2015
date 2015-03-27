@@ -84,6 +84,56 @@ Template.registerVisit.events({
 });
 
 Template.registerVisit.rendered = function(){
+    document.getElementById('close').classList.add('hidden');
+
+    var webrtc = new SimpleWebRTC({
+        localVideoEl: 'localVideo',
+        remoteVideosEl: 'remotesVideos'
+        //autoRequestMedia: true
+    });
+    $('#start').click(function(){
+        var idLekarza = document.getElementById('lekarze').value;
+        var room = Meteor.userId()+idLekarza;
+
+        if(idLekarza!=0){
+            webrtc.startLocalVideo();
+            webrtc.once('readyToCall', function (stream) {
+                webrtc.joinRoom(room);
+            });
+        }else{
+            alert('Proszę wybrać lekarza');
+        }
+        document.getElementById('close').classList.remove('hidden');
+    });
+    $('#close').click(function(){
+        webrtc.leaveRoom();
+        webrtc.stopLocalVideo();
+        document.getElementById('close').classList.add('hidden');
+    });
+    webrtc.on('videoAdded', function (video, peer) {
+        console.log('video added', peer);
+        var remotes = document.getElementById('remotes');
+        if (remotes) {
+            var container = document.createElement('div');
+            container.className = 'videoContainer';
+            container.id = 'container_' + webrtc.getDomId(peer);
+            container.appendChild(video);
+
+            // suppress contextmenu
+            video.oncontextmenu = function () { return false; };
+
+            remotes.appendChild(container);
+        }
+    });
+    webrtc.on('videoRemoved', function (video, peer) {
+        console.log('video removed ', peer);
+        var remotes = document.getElementById('remotes');
+        var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+        if (remotes && el) {
+            remotes.removeChild(el);
+        }
+    });
+
     setPrzychodnie();
     $('#przychodnie').selectpicker({
 

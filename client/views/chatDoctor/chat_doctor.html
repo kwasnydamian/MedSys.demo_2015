@@ -1,7 +1,7 @@
 
 <template name="chatDoctor">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
                                 <div class="input-group col-xs-6 pull-left">
@@ -46,6 +46,16 @@
                         </ul>
                     </div>
 
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <button id="start" class="btn btn-default">Rozmowa wideo</button>
+                        <button id="close" class="btn btn-default hidden">Zakończ</button>
+                    </div>
+                    <div class="row">
+                        <video id="localVideo"></video>
+                        <div id="remotes"></div>
+                    </div>
                 </div>
                 {{> pollsModalTemplate}}
                 {{> pollAnswersModalTemplate}}

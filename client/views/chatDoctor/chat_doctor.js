@@ -53,12 +53,63 @@ Template.inputDoctor.events = {
 }
 
 Template.chatDoctor.rendered = function(){
+    document.getElementById('close').classList.add('hidden');
+
+    var webrtc = new SimpleWebRTC({
+        localVideoEl: 'localVideo',
+        remoteVideosEl: 'remotesVideos'
+        //autoRequestMedia: true
+    });
+    $('#start').click(function(){
+        var idPacjenta = document.getElementById('pacjenci').value;
+        var room = idPacjenta+Meteor.userId();
+
+        if(idPacjenta!=0){
+            webrtc.startLocalVideo();
+            webrtc.once('readyToCall', function (stream) {
+                webrtc.joinRoom(room);
+                //document.getElementById('#close').classList.remove('hidden');
+            });
+        }else{
+            alert('Proszę wybrać pacjenta');
+        }
+        document.getElementById('close').classList.remove('hidden');
+    });
+    $('#close').click(function(){
+        webrtc.leaveRoom();
+        webrtc.stopLocalVideo();
+        document.getElementById('close').classList.add('hidden');
+    });
+    webrtc.on('videoAdded', function (video, peer) {
+        console.log('video added', peer);
+        var remotes = document.getElementById('remotes');
+        if (remotes) {
+            var container = document.createElement('div');
+            container.className = 'videoContainer';
+            container.id = 'container_' + webrtc.getDomId(peer);
+            container.appendChild(video);
+
+            // suppress contextmenu
+            video.oncontextmenu = function () { return false; };
+
+            remotes.appendChild(container);
+        }
+    });
+
+    webrtc.on('videoRemoved', function (video, peer) {
+        console.log('video removed ', peer);
+        var remotes = document.getElementById('remotes');
+        var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+        if (remotes && el) {
+            remotes.removeChild(el);
+        }
+    });
+
     setPacjent();
     $('#pacjenci').selectpicker({
         //style:'btn-info',
         size:3
     });
-    //setPacjent();
 };
 
 Template.chatDoctor.helpers({
@@ -82,9 +133,6 @@ Template.chatDoctor.events({
     'change #pacjenci': function(){
         var idPacjenta = document.getElementById('pacjenci').value;
         Session.set('idPacjenta',idPacjenta);
-    },
-    'click #pollsModalButton':function(){
-
     },
     'click .pollItem':function(event){
         var target = event.currentTarget;

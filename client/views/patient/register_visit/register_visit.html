@@ -1,6 +1,6 @@
 <template name="registerVisit">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <form>
                 <div class="container row">
                     <div class="input-group col-xs-12">
@@ -26,7 +26,7 @@
                 {{>client}}
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div id="doctorCalendarInfo" class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <strong>Proszę wybrać lekarza...</strong>
@@ -35,6 +35,16 @@
 
             </div>
 
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <button id="start" class="btn btn-default">Rozmowa wideo</button>
+                <button id="close" class="btn btn-default">Zakończ</button>
+            </div>
+            <div class="row">
+                <video id="localVideo"></video>
+                <div id="remotes"></div>
+            </div>
         </div>
     </div>
     {{> addEventTemplate}}

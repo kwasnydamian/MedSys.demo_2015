@@ -13,3 +13,17 @@ html {
     height: 320px;
     overflow: auto;
 }
+.videoContainer {
+    position: relative;
+    width: 200px;
+    height: 150px;
+}
+.videoContainer video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#localVideo{
+    width: 200px;
+    height: 150px;
+}
