@@ -99,11 +99,11 @@ Template.registerVisit.rendered = function(){
             webrtc.startLocalVideo();
             webrtc.once('readyToCall', function (stream) {
                 webrtc.joinRoom(room);
+                document.getElementById('close').classList.remove('hidden');
             });
         }else{
             alert('Proszę wybrać lekarza');
         }
-        document.getElementById('close').classList.remove('hidden');
     });
     $('#close').click(function(){
         webrtc.leaveRoom();

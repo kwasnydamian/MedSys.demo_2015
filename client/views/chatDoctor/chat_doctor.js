@@ -58,7 +58,6 @@ Template.chatDoctor.rendered = function(){
     var webrtc = new SimpleWebRTC({
         localVideoEl: 'localVideo',
         remoteVideosEl: 'remotesVideos'
-        //autoRequestMedia: true
     });
     $('#start').click(function(){
         var idPacjenta = document.getElementById('pacjenci').value;
@@ -68,17 +67,17 @@ Template.chatDoctor.rendered = function(){
             webrtc.startLocalVideo();
             webrtc.once('readyToCall', function (stream) {
                 webrtc.joinRoom(room);
-                //document.getElementById('#close').classList.remove('hidden');
+                document.getElementById('close').classList.remove('hidden');
             });
         }else{
             alert('Proszę wybrać pacjenta');
         }
-        document.getElementById('close').classList.remove('hidden');
     });
     $('#close').click(function(){
         webrtc.leaveRoom();
         webrtc.stopLocalVideo();
         document.getElementById('close').classList.add('hidden');
+        document.getElementById('localVideo').innerHTML="";
     });
     webrtc.on('videoAdded', function (video, peer) {
         console.log('video added', peer);
@@ -107,7 +106,6 @@ Template.chatDoctor.rendered = function(){
 
     setPacjent();
     $('#pacjenci').selectpicker({
-        //style:'btn-info',
         size:3
     });
 };
@@ -183,4 +181,4 @@ Template.pollsModalTemplate.events({
             alert("Błąd");
         }
     }
-})
+});
