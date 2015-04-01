@@ -4,10 +4,18 @@
 Template.messages.helpers({
     messages: function() {
         if(Session.get('idLekarza')){
-            return Messages.find({id_patient:Meteor.userId(),id_doctor:Session.get('idLekarza')}, { sort: { time: 1}});
+            return Messages.find({id_patient:Meteor.userId(),id_doctor:Session.get('idLekarza')});
         }
     },
-    czyAutor: function(messages){
+    czyAutor: function(id){
+        var mes = Messages.findOne({_id:id});
+
+        if(Meteor.userId()==mes.owner){
+            return true;
+        }
+        else{
+            return false;
+        }
         return true;
     }
 })

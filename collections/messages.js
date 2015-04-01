@@ -4,6 +4,9 @@
 Messages = new Meteor.Collection('messages');
 Messages.allow({
     insert:function(){
-        return true;
+        if(Meteor.user())
+            return true;
+        else
+            return false;
     }
 })

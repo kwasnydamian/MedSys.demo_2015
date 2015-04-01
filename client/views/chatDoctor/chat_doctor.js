@@ -6,21 +6,20 @@ Template.messagesDoctor.helpers({
     messagesDoctor: function() {
         var id = Session.get('idPacjenta');
         if(id!==0 && id!=="" && id!=="0" && id!=="undefined"){
-            return Messages.find({id_doctor:Meteor.userId(),id_patient:Session.get('idPacjenta')}, { sort: { time: 1}});
+            return Messages.find({id_doctor:Meteor.userId(),id_patient:Session.get('idPacjenta')});
         }else{
             return null;
         }
-      },
-    czyAutor: function(message){
-        //var mes = Messages.findOne({_id:message});
-        //var id = Meteor.userId();
-        //
-        //if(id==mes.owner){
-        //    return true;
-        //}
-        //else{
-        //    return false;
-        //}
+    },
+    czyAutor: function(id){
+        var mes = Messages.findOne({_id:id});
+
+        if(Meteor.userId()==mes.owner){
+            return true;
+        }
+        else{
+            return false;
+        }
         return true;
     }
 })
@@ -54,11 +53,11 @@ Template.inputDoctor.events = {
 
 Template.chatDoctor.rendered = function(){
     document.getElementById('close').classList.add('hidden');
-
     var webrtc = new SimpleWebRTC({
         localVideoEl: 'localVideo',
         remoteVideosEl: 'remotesVideos'
     });
+
     $('#start').click(function(){
         var idPacjenta = document.getElementById('pacjenci').value;
         var room = idPacjenta+Meteor.userId();
@@ -84,7 +83,7 @@ Template.chatDoctor.rendered = function(){
         var remotes = document.getElementById('remotes');
         if (remotes) {
             var container = document.createElement('div');
-            container.className = 'videoContainer';
+            container.className = 'embed-responsive-item ';
             container.id = 'container_' + webrtc.getDomId(peer);
             container.appendChild(video);
 
@@ -93,8 +92,31 @@ Template.chatDoctor.rendered = function(){
 
             remotes.appendChild(container);
         }
+        if (peer && peer.pc) {
+            var connstate = document.createElement('div');
+            connstate.className = 'connectionstate';
+            container.appendChild(connstate);
+            peer.pc.on('iceConnectionStateChange', function (event) {
+                switch (peer.pc.iceConnectionState) {
+                    case 'checking':
+                        connstate.innerText = 'Łączenie...';
+                        break;
+                    case 'connected':
+                    case 'completed': // on caller side
+                        connstate.innerText = 'Połączenie ustanowione.';
+                        break;
+                    case 'disconnected':
+                        connstate.innerText = 'Rozłączony.';
+                        break;
+                    case 'failed':
+                        break;
+                    case 'closed':
+                        connstate.innerText = 'Połączenie zamknięte.';
+                        break;
+                }
+            });
+        }
     });
-
     webrtc.on('videoRemoved', function (video, peer) {
         console.log('video removed ', peer);
         var remotes = document.getElementById('remotes');
@@ -103,7 +125,25 @@ Template.chatDoctor.rendered = function(){
             remotes.removeChild(el);
         }
     });
+    webrtc.on('createdPeer', function (peer) {
+        console.log('createdPeer', peer);
+        var fileinput = document.createElement('input');
+        fileinput.type = 'file';
+        peer.on('fileTransfer', function (metadata, receiver) {
+            console.log('incoming filetransfer', metadata.name, metadata);
+            receiver.on('progress', function (bytesReceived) {
+                console.log('receive progress', bytesReceived, 'out of', metadata.size);
+            });
+            // get notified when file is done
+            receiver.on('receivedFile', function (file, metadata) {
+                console.log('received file', metadata.name, metadata.size);
 
+                // close the channel
+                receiver.channel.close();
+            });
+            filelist.appendChild(item);
+        });
+    });
     setPacjent();
     $('#pacjenci').selectpicker({
         size:3
@@ -131,6 +171,7 @@ Template.chatDoctor.events({
     'change #pacjenci': function(){
         var idPacjenta = document.getElementById('pacjenci').value;
         Session.set('idPacjenta',idPacjenta);
+        
     },
     'click .pollItem':function(event){
         var target = event.currentTarget;
