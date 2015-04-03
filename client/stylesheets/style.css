@@ -1,8 +1,6 @@
 .container{
     width: auto;
-    /*padding-left: 3em;*/
     margin-left: 2em;
-    /*padding-right: 0 !important;*/
 }
 .padding-left-1m{
     padding-left: 1em;
@@ -22,11 +20,6 @@
 .text-center{
     text-align: center;
 }
-/*#footer{*/
-    /*position:absolute;*/
-    /*bottom:0;*/
-    /*left:0;*/
-/*}*/
 .grid-block, .main, .post, .comments li, .comment-form {
     background: #0079c1;
     border-radius: 3px;
@@ -50,11 +43,6 @@
     background: #ffffff;
     background-color: #2e6da4;
 }
-.btn-primary{
-    /*color: #fff;
-    background-color: #002f6b;
-    border-color: #2e6da4;*/
-}
 
 .container-fluid{
     background: #337ab7;
@@ -74,10 +62,8 @@ body {
 #wrapper {
     min-height:100%;
     position:relative;
-    /*padding-left:2em;*/
 }
 #headerMain {
-    /*background:#222;*/
     background:white;
 }
 #contentMain {
@@ -87,7 +73,6 @@ body {
 #patientCalendar{
     background: #ffffff;
     padding: 10px;
-    /*margin-bottom: 50px;*/
 }
 #doctorCalendar{
     background: #ffffff;
@@ -104,14 +89,12 @@ body {
 }
 .main{
     background:white !important;
-    /*padding-left: 50px;*/
     position: absolute;
     width: 100%;
     left: 0;
     top: 50px;
     right: 0;
     bottom: 0;
-    /*background-color: #fff;*/
     z-index: 0;
     -webkit-transform-origin: 0 50%;
     -moz-transform-origin: 0 50%;
@@ -493,19 +476,19 @@ table.fc-border-separate {
 }
 
 #autor{
-    padding-left: 5%;
-    padding-right: 15%;
+    padding-left: 10%;
+    /*padding-right: 40%;*/
 }
 #rozmowca{
-    padding-left: 15%;
-    padding-right: 5%;
+    /*padding-left: 40%;*/
+    padding-right: 10%;
 }
 
 .arrow_box_left {
     position: relative;
     background: #82d669;
-    border-radius: 2px;
-    padding: 3px;
+    border-radius: 8px;
+    padding: 5px;
 }
 .arrow_box_left:after {
     right: 100%;
@@ -518,15 +501,15 @@ table.fc-border-separate {
     pointer-events: none;
     border-color: rgba(130, 214, 105, 0);
     border-right-color: #82d669;
-    border-width: 5px;
-    margin-top: -5px;
+    border-width: 6px;
+    margin-top: -6px;
 }
 
 .arrow_box_right {
     position: relative;
     background: #8dcbeb;
-    border-radius: 2px;
-    padding: 3px;
+    border-radius: 8px;
+    padding: 5px;
 }
 .arrow_box_right:after {
     left: 100%;
@@ -539,6 +522,6 @@ table.fc-border-separate {
     pointer-events: none;
     border-color: rgba(71, 114, 214, 0);
     border-left-color: #8dcbeb;
-    border-width: 5px;
-    margin-top: -5px;
+    border-width: 6px;
+    margin-top: -6px;
 }

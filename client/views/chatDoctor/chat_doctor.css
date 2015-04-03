@@ -9,7 +9,6 @@ html {
     color: #002f6b;
 }
 .scrollsyn {
-    width: auto;
     overflow: auto;
 }
 .chatPatient{
@@ -18,20 +17,11 @@ html {
 .chatDoctor{
     max-height: 400px;
 }
-/*.videoContainer {*/
-    /*position: relative;*/
-    /*width: 200px;*/
-    /*height: 150px;*/
-/*}*/
 .videoContainer video {
     position: absolute;
     width: 100%;
     height: 100%;
 }
-/*#localVideo{*/
-    /*width: 200px;*/
-    /*height: 150px;*/
-/*}*/
 .volume {
     position: absolute;
     left: 15%;
@@ -47,7 +37,6 @@ html {
     text-align: center;
     color: #fff
 }
-
 #message{
     z-index: 0;
 }

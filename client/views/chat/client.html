@@ -43,17 +43,14 @@
 </template>
 
 <template name="messages">
-    {{#each messages}}
-        {{#if czyAutor _id}}
-            <div id="autor">
-                <p class="arrow_box_left" title="{{time}}">{{message}}</p>
-            </div>
-        {{else}}
-            <div id="rozmowca">
-                <p class="arrow_box_right" title="{{time}}">{{message}}</p>
-            </div>
-        {{/if}}
-    {{/each}}
+    <input type="hidden" id="lastOwner" value="0">
+    <div id="wiadomosci">
+        <div>
+            {{#each messages}}
+                {{displayMessage _id}}
+            {{/each}}
+        </div>
+    </div>
 </template>
 
 <template name="input">

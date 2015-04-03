@@ -7,16 +7,59 @@ Template.messages.helpers({
             return Messages.find({id_patient:Meteor.userId(),id_doctor:Session.get('idLekarza')});
         }
     },
-    czyAutor: function(id){
-        var mes = Messages.findOne({_id:id});
+    displayMessage: function(id) {
+        if (id && id!="" && id!=undefined) {
+            var userID = Meteor.userId();
+            var lastMessageAuthorId = document.getElementById("lastOwner").value;
+            var message = Messages.findOne({_id: id});
 
-        if(Meteor.userId()==mes.owner){
-            return true;
+            var div = document.createElement("div");
+            var p = document.createElement("p");
+            var text = document.createTextNode(message.message);
+            p.setAttribute("name","destination");
+
+            if (lastMessageAuthorId != "" && lastMessageAuthorId != undefined) {
+                if (lastMessageAuthorId == message.owner) { // jeśli właściciel ostatniego elementu czatu i właścicel aktualnej wiadomości to ta sama osoba
+                    var destination = document.getElementsByName("destination");
+                    destination[destination.length-1].innerHTML += "<br />"+message.message;
+                }
+                else{
+                    if (userID == message.owner) {
+                        div.id = "autor";
+                        p.classList.add("arrow_box_left");
+                        p.title = message.time;
+                    }
+                    else {
+                        div.id = "rozmowca";
+                        p.classList.add("arrow_box_right");
+                        p.title = message.time;
+                    }
+                    div.appendChild(p);
+                    p.appendChild(text);
+                    document.getElementById("wiadomosci").appendChild(div);
+                    document.getElementById("lastOwner").value = message.owner;
+                }
+            }
+            else {
+                if (userID == message.owner) {
+                    div.id = "autor";
+                    p.classList.add("arrow_box_left");
+                    p.title = message.time;
+                }
+                else {
+                    div.id = "rozmowca";
+                    p.classList.add("arrow_box_right");
+                    p.title = message.time;
+                }
+
+                div.appendChild(p);
+                p.appendChild(text);
+                document.getElementById("wiadomosci").appendChild(div);
+                document.getElementById("lastOwner").value = message.owner;
+            }
+
+            $('.chatPatient').scrollTop($('.chatPatient')[0].scrollHeight);
         }
-        else{
-            return false;
-        }
-        return true;
     }
 })
 

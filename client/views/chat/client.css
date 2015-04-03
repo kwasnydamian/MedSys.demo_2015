@@ -9,8 +9,3 @@ html {
 .body{
     color: #002f6b;
 }
-.scrollsyn{
-    width: auto;
-    /*height: 200px;*/
-    overflow: auto;
-}

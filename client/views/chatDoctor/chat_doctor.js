@@ -11,18 +11,61 @@ Template.messagesDoctor.helpers({
             return null;
         }
     },
-    czyAutor: function(id){
-        var mes = Messages.findOne({_id:id});
+    displayMessage: function(id) {
+        if (id && id!="" && id!=undefined) {
+            var userID = Meteor.userId();
+            var lastMessageAuthorId = document.getElementById("lastOwner").value;
+            var message = Messages.findOne({_id: id});
 
-        if(Meteor.userId()==mes.owner){
-            return true;
+            var div = document.createElement("div");
+            var p = document.createElement("p");
+            var text = document.createTextNode(message.message);
+            p.setAttribute("name","destination");
+
+            if (lastMessageAuthorId != "" && lastMessageAuthorId != undefined) {
+                if (lastMessageAuthorId == message.owner) { // jeśli właściciel ostatniego elementu czatu i właścicel aktualnej wiadomości to ta sama osoba
+                    var destination = document.getElementsByName("destination");
+                    destination[destination.length-1].innerHTML += "<br />"+message.message;
+                }
+                else{
+                    if (userID == message.owner) {
+                        div.id = "autor";
+                        p.classList.add("arrow_box_left");
+                        p.title = message.time;
+                    }
+                    else {
+                        div.id = "rozmowca";
+                        p.classList.add("arrow_box_right");
+                        p.title = message.time;
+                    }
+                    div.appendChild(p);
+                    p.appendChild(text);
+                    document.getElementById("wiadomosci").appendChild(div);
+                    document.getElementById("lastOwner").value = message.owner;
+                }
+            }
+            else {
+                if (userID == message.owner) {
+                    div.id = "autor";
+                    p.classList.add("arrow_box_left");
+                    p.title = message.time;
+                }
+                else {
+                    div.id = "rozmowca";
+                    p.classList.add("arrow_box_right");
+                    p.title = message.time;
+                }
+
+                div.appendChild(p);
+                p.appendChild(text);
+                document.getElementById("wiadomosci").appendChild(div);
+                document.getElementById("lastOwner").value = message.owner;
+            }
+
+            $('.chatDoctor').scrollTop($('.chatDoctor')[0].scrollHeight);
         }
-        else{
-            return false;
-        }
-        return true;
     }
-})
+});
 
 Template.inputDoctor.events = {
     'keydown input#message' : function (event) {
@@ -53,6 +96,7 @@ Template.inputDoctor.events = {
 
 Template.chatDoctor.rendered = function(){
     document.getElementById('close').classList.add('hidden');
+    document.getElementById("start").classList.add("hidden");
     var webrtc = new SimpleWebRTC({
         localVideoEl: 'localVideo',
         remoteVideosEl: 'remotesVideos'
@@ -67,6 +111,7 @@ Template.chatDoctor.rendered = function(){
             webrtc.once('readyToCall', function (stream) {
                 webrtc.joinRoom(room);
                 document.getElementById('close').classList.remove('hidden');
+                document.getElementById('start').classList.add('hidden');
             });
         }else{
             alert('Proszę wybrać pacjenta');
@@ -76,6 +121,7 @@ Template.chatDoctor.rendered = function(){
         webrtc.leaveRoom();
         webrtc.stopLocalVideo();
         document.getElementById('close').classList.add('hidden');
+        document.getElementById("start").classList.remove("hidden");
         document.getElementById('localVideo').innerHTML="";
     });
     webrtc.on('videoAdded', function (video, peer) {
@@ -168,10 +214,12 @@ Template.chatDoctor.helpers({
 });
 
 Template.chatDoctor.events({
-    'change #pacjenci': function(){
+    'change #pacjenci': function(e){
+        document.getElementById("wiadomosci").innerHTML="";
         var idPacjenta = document.getElementById('pacjenci').value;
         Session.set('idPacjenta',idPacjenta);
-        
+        document.getElementById("start").classList.remove("hidden");
+        document.getElementById("lastOwner").value = "0";
     },
     'click .pollItem':function(event){
         var target = event.currentTarget;
