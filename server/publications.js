@@ -40,3 +40,6 @@ Meteor.publish('pollspatients', function (){
 Meteor.publish('answers', function (){
     return Answers.find();
 });
+Meteor.publish('wiadomosci', function (){
+    return Wiadomosci.find();
+});

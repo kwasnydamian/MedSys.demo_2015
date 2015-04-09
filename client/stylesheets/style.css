@@ -20,6 +20,15 @@
 .text-center{
     text-align: center;
 }
+.vertical-align-middle{
+    vertical-align: middle;
+}
+.text-online{
+    color:#63a924;
+}
+.text-offline{
+    color:#d4cece;
+}
 .grid-block, .main, .post, .comments li, .comment-form {
     background: #0079c1;
     border-radius: 3px;
