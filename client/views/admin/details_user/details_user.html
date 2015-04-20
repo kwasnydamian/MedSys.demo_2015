@@ -1,0 +1,90 @@
+<template name="detailsUserTemplate">
+        <div class="col-md-12 col-xs-12">
+            <div class="page-header">
+                <h1><small>Szczegóły użytkownika</small></h1>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Login">Login</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <input type="text" class="form-control" value="{{username}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Email">Email</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <input type="email" class="form-control" value="{{emailHelper emails}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Imie">Imię</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <input type="text" class="form-control" value="{{profile.firstName}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Nazwisko">Nazwisko</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <input type="text" class="form-control" value="{{profile.lastName}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        {{#if isDoctor _id}}
+            <div class="col-md-12 col-xs-12 input-group">
+                <div class="row">
+                    <div class="col-md-3 col-xs-3">
+                        <label class="pull-right" for="Tytul">Tytuł naukowy</label>
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <input type="text" class="form-control" value="{{profile.academicTitle}}" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Ulica">Ulica</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <input type="text" class="form-control" value="{{profile.street}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Miejscowosc">Miejscowość</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <input type="text" class="form-control" value="{{profile.city}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-3 col-xs-3">
+                    <label class="pull-right" for="Obrazek">Obrazek</label>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <img height="100" width="100" src="{{profile.avatar}}" class="img-rounded">
+                </div>
+            </div>
+        </div>
+</template>

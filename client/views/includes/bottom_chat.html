@@ -9,7 +9,10 @@
 <template name="itemChat">
     {{#with userChat this}}
         <div class="chat-user-item">
-            <div class="item-header" id="{{_id}}">
+            <div class="item-header" id="{{_id}}" style="background-color: {{col}}">
+                {{#if status.online}}
+                    <span class="fa fa-circle text-online"></span>
+                {{/if}}
                 {{profile.lastName}} {{profile.firstName}}
                 <i id="close-chat-item" class="pull-right fa fa-close"></i>
             </div>

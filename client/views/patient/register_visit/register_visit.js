@@ -103,6 +103,19 @@ Template.registerVisit.rendered = function(){
                 document.getElementById('close').classList.remove('hidden');
                 document.getElementById('start').classList.add('hidden');
             });
+            // dodawanie powiadomienia
+            var notification = {
+                'description':"Zainicjowano rozmowę video ",
+                'creator':Meteor.userId(),
+                'receiver':idLekarza,
+                'icon':'fa fa-video-camera',
+                'notificationcolor':'red',
+                'date':moment().format(),
+                'wasRead':false
+            }
+
+            var not = Notifications.insert(notification);
+
         }else{
             alert('Proszę wybrać lekarza');
         }

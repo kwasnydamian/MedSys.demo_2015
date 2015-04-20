@@ -234,4 +234,9 @@ if(Meteor.users.find().count()===0){
         'id_ankiety': ankietaCukrzyca
     });
 
+    // inicjalizacja ustawnień
+    Settings.insert({
+        'systemname':'MEDSYS demo',
+        'systemnamecolor':'#444'
+    })
 }

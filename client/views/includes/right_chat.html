@@ -7,11 +7,11 @@
         {{#each onlineUsers}}
             {{#if status.online}}
                 <li id="{{_id}}">
-                    {{profile.lastName}} {{profile.firstName}} <span class="fa fa-circle text-online pull-right"></span>
+                    <img src="{{profile.chatAvatar}}"> {{profile.lastName}} {{profile.firstName}} <span class="fa fa-circle text-online pull-right"></span>
                 </li>
             {{else}}
                 <li id="{{_id}}">
-                    {{profile.lastName}} {{profile.firstName}} <span class="pull-right"></span>
+                    <img src="{{profile.chatAvatar}}"> {{profile.lastName}} {{profile.firstName}} <span class="pull-right"></span>
                 </li>
             {{/if}}
         {{/each}}

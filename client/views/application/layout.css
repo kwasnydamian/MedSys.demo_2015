@@ -120,3 +120,20 @@ article, article:after, #nav, #nav *
 ::-webkit-scrollbar:horizontal {
     height: 8px;
 }
+
+.asa{
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.max{
+    min-height: 90%;
+    height: 90%;
+    width:90%;
+    position: absolute;
+}
+
+#divNotifications{
+    padding:15px;
+}

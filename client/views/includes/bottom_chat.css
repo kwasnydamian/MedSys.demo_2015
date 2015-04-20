@@ -81,3 +81,8 @@
 .item-content::-webkit-scrollbar-thumb:hover {
     background-color: #aaa;
 }
+
+/*scroll horizontal */
+.chat-users-container::-webkit-scrollbar:horizontal {
+    height: 8px;
+}

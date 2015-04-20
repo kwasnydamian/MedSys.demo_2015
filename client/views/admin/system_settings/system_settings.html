@@ -1,0 +1,58 @@
+<template name="systemSettingsTemplate">
+    <div class="col-md-12 col-xs-12">
+        <div class="page-header">
+            <h1><small>Ustawienia systemowe</small></h1>
+        </div>
+    </div>
+    <form>
+        <br />
+        <div class="col-md-12 col-xs-12 input-group" id="SystemNameGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="SystemName">Nazwa systemu</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="SystemName" id="SystemName" value="{{systemname}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="SystemNameError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="SystemNameColorGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="SystemNameColor">Kolor nazwy systemu</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="color" class="form-control" name="SystemNameColor" id="SystemNameColor" value="{{systemnamecolor}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="SystemNameColorError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="ChatHeaderColorGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="ChatHeaderColor">Kolor nagłówka czatu</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="color" class="form-control" name="ChatHeaderColor" id="ChatHeaderColor" value="{{chatheadercolor}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="ChatHeaderColorError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="Id" Iid="Id" value="{{_id}}">
+        <br />
+        <div class="col-md-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2">
+                    <input type="submit" id="save" class="pull-right btn btn-primary" value="Zapisz"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</template>

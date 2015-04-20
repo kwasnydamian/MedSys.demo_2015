@@ -21,5 +21,10 @@ Meteor.methods({
                 return user;
             }
         }
+    },
+    editUser:function(user,_id){
+        if(_.isObject(user)){
+            Uzytkownicy.update(_id,{$set:user},{upsert:true});
+        }
     }
 });

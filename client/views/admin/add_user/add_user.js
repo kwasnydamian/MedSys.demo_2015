@@ -4,7 +4,12 @@
 Template.addUserTemplate.helpers({
    'role':function(){
        return Roles.getAllRoles();
-   }
+   },
+    myCallback:function(){
+        Uploader.finished = function(index, fileInfo, templateContext) {
+            document.getElementById("ImageUrl").value = fileInfo.url;
+        }
+    }
 });
 
 Template.addUserTemplate.events({
@@ -18,6 +23,7 @@ Template.addUserTemplate.events({
        var firstName = $(event.target).find('[name=Imie]').val();
        var lastName = $(event.target).find('[name=Nazwisko]').val();
        var rola = $(event.target).find('[name=Rola]:checked').val();
+       var image = $(event.target).find('[name=ImageUrl]').val();
        var isDoctor = false;
        var isPatient = false;
 
@@ -35,7 +41,8 @@ Template.addUserTemplate.events({
                lastName: lastName,
                isDoctor: isDoctor,
                isPatient: isPatient,
-               name: lastName+" "+firstName
+               name: lastName+" "+firstName,
+               image:image
            }
        }
 

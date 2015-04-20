@@ -43,3 +43,9 @@ Meteor.publish('answers', function (){
 Meteor.publish('wiadomosci', function (){
     return Wiadomosci.find();
 });
+Meteor.publish('settings', function (){
+    return Settings.find();
+});
+Meteor.publish('notifications',function(){
+   return Notifications.find();
+});
