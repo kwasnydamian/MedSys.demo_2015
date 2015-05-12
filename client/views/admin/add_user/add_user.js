@@ -6,9 +6,9 @@ Template.addUserTemplate.helpers({
        return Roles.getAllRoles();
    },
     myCallback:function(){
-        Uploader.finished = function(index, fileInfo, templateContext) {
-            document.getElementById("ImageUrl").value = fileInfo.url;
-        }
+        //Uploader.finished = function(index, fileInfo, templateContext) {
+        //    document.getElementById("ImageUrl").value = fileInfo.url;
+        //}
     }
 });
 
