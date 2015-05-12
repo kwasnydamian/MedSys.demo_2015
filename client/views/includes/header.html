@@ -9,14 +9,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{pathFor 'home'}}">MEDSYS demo</a>
+                    {{#with settings}}
+                        <a class="navbar-brand" href="{{pathFor 'home'}}" style="color:{{systemnamecolor}}">{{systemname}}</a>
+                    {{/with}}
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        {{#if currentUser}}
+                    {{#if currentUser}}
+                        <ul class="nav navbar-nav navbar-right">
                             {{> loginButtons }}
-                        {{/if}}
-                    </ul>
+                        </ul>
+                        <div id="divNotifications" class="nav navbar-nav navbar-right">
+                            <span class="fa fa-inbox dropdown-toggle pointer" data-toggle="dropdown" aria-expanded="false"></span>
+                            {{#if isNotification}}
+                                <span class="badge">{{notifications.count}}</span>
+                                <ul class="dropdown-menu" role="menu">
+                                    {{#each notifications}}
+                                        <li role="presentation">
+                                            <a href="#" class="notificationItem" id="{{_id}}" role="menuitem" tabindex="-1">
+                                                <span class="{{icon}}" style="color:{{notificationcolor}};"></span> {{description}} ({{getUserName creator}})
+                                            </a>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
+                        </div>
+                    {{/if}}
                 </div>
             </div>
         </nav>

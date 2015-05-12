@@ -1,0 +1,138 @@
+<template name="editUserTemplate">
+    <div class="col-md-12 col-xs-12">
+        <div class="page-header">
+            <h1><small>Edycja użytkownika</small></h1>
+        </div>
+    </div>
+    <form id="#editUserForm">
+        <br />
+        <div class="col-md-12 col-xs-12 input-group" id="LoginGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Login">Login</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Login" id="Login" value="{{username}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="LoginError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="EmailGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Email">Email</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="email" class="form-control" name="Email" id="Email" value="{{emailHelper emails}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="EmailError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="ImieGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Imie">Imię</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Imie" id="Imie" value="{{profile.firstName}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="ImieError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="NazwiskoGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Nazwisko">Nazwisko</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Nazwisko" id="Nazwisko" value="{{profile.lastName}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="NazwiskoError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        {{#if isDoctor _id}}
+            <div class="col-md-12 col-xs-12 input-group" id="TytulGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Tytul">Tytuł naukowy</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Tytul" id="Tytul" value="{{profile.academicTitle}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="TytulError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        <div class="col-md-12 col-xs-12 input-group" id="UlicaGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Ulica">Ulica</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Ulica" id="Ulica" value="{{profile.street}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="UlicaError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="MiejscowoscGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Miejscowosc">Miejscowość</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Miejscowosc" id="Miejscowosc" value="{{profile.city}}">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="MiejscowoscError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Obrazek">Avatar</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="hidden" id="ImageUrl" name="ImageUrl" value="{{profile.image}}">
+                    <img id="avatar" src="{{profile.avatar}}">
+                    <input type="hidden" id="chat-avatar" value="{{profile.chatAvatar}}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Avatar">Przytnij</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <img src="{{profile.image}}" class="img-rounded">
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="Id" value="{{_id}}">
+        <br />
+        <div class="col-md-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2">
+                    <input type="submit" id="save" class="pull-right btn btn-primary" value="Zapisz"/>
+                </div>
+            </div>
+        </div>
+        <div id="goob">
+
+        </div>
+        <img id="canvasImg">
+    </form>
+</template>

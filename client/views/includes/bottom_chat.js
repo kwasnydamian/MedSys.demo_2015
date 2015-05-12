@@ -20,6 +20,13 @@ Template.itemChat.helpers({
             return true
         else
             return false
+    },
+    isOnline:function(isOnline){
+
+    },
+    col:function(){
+        var settings = Settings.findOne({});
+        return settings.chatheadercolor;
     }
 });
 
