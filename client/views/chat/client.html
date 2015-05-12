@@ -1,65 +1,56 @@
 
 <template name="client">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
-                            Konsultacja
-                            <div class="pull-right">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                        Ankiety <span class="badge">{{wszystkie.count}}</span>
-                                    </button>
-                                    {{#if isPoll wszystkie.count}}
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                            {{#each wszystkie}}
-                                                <li role="presentation">
-                                                    <a href="#" class="pollItem" id="{{_id}}" role="menuitem" tabindex="-1">
-                                                        {{#each getPollName id_ankieta}}
-                                                            {{nazwa}}
-                                                        {{/each}}
-                                                    </a>
-                                                </li>
-                                            {{/each}}
-                                        </ul>
-                                    {{/if}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                                    {{> welcome }}
-                            <div class="scrollmatka" data-spy="scroll" id="scroll" data-target="#scroll2">
-                                <div class="scrollsyn" id="scroll2">
-                                        {{> messages }}
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                {{> input }}
+    <div class="row">
+        <div class="col-md-12">
+            Konsultacja
+            <div class="pull-right">
+                <div class="dropdown">
+                <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Ankiety <span class="badge">{{wszystkie.count}}</span>
+                </button>
+                {{#if isPoll wszystkie.count}}
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        {{#each wszystkie}}
+                            <li role="presentation">
+                                <a href="#" class="pollItem" id="{{_id}}" role="menuitem" tabindex="-1">
+                                    {{#each getPollName id_ankieta}}
+                                        {{nazwa}}
+                                    {{/each}}
+                                </a>
                             </li>
-                        </ul>
-                    </div>
-                </div>
-                {{> pollModalTemplate}}
+                        {{/each}}
+                    </ul>
+                {{/if}}
             </div>
-</template>
-
-<template name="welcome">
-    <p>
-
-    </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="scrollmatka" data-spy="scroll" id="scroll" data-target="#scroll2">
+                <div class="scrollsyn chatPatient" id="scroll2">
+                    {{> messages }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{>input}}
+        </div>
+    </div>
+    {{> pollModalTemplate}}
 </template>
 
 <template name="messages">
-    {{#each messages}}
-        {{#if czyAutor messages}}
-            <div>
-                <h5>{{message}}</h5>
-                <h5><small>{{time}} <cite title="{{username}}">{{username}}</cite></small></h5>
-            </div>
-        {{/if}}
-    {{/each}}
+    <input type="hidden" id="lastOwner" value="0">
+    <div id="wiadomosci">
+        <div>
+            {{#each messages}}
+                {{displayMessage _id}}
+            {{/each}}
+        </div>
+    </div>
 </template>
 
 <template name="input">

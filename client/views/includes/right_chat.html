@@ -1,0 +1,20 @@
+<template name="rightChat">
+<div class="chat-container">
+    <div class="chat-container-header">
+        <i class="fa fa-wechat"></i>&nbsp;&nbsp;Chat
+    </div>
+    <ul>
+        {{#each onlineUsers}}
+            {{#if status.online}}
+                <li id="{{_id}}">
+                    {{profile.lastName}} {{profile.firstName}} <span class="fa fa-circle text-online pull-right"></span>
+                </li>
+            {{else}}
+                <li id="{{_id}}">
+                    {{profile.lastName}} {{profile.firstName}} <span class="pull-right"></span>
+                </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>
+</template>

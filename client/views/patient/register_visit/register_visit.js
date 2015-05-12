@@ -62,6 +62,7 @@ Template.registerVisit.events({
             Session.set('idLekarza','');
             $('#doctorCalendar').fullCalendar('destroy');
             document.getElementById("chat").classList.add("hidden");
+            document.getElementById("video").classList.add("hidden");
             $('#doctorCalendarInfo').show();
         }
         else{
@@ -70,6 +71,7 @@ Template.registerVisit.events({
             zaladujKalendarz(idLekarza);
             Session.set('idLekarza', idLekarza);
             document.getElementById("chat").classList.remove("hidden");
+            document.getElementById("video").classList.remove("hidden");
         }
     },
     'click #wizytaButton':function(){
@@ -84,6 +86,56 @@ Template.registerVisit.events({
 });
 
 Template.registerVisit.rendered = function(){
+    document.getElementById('close').classList.add('hidden');
+    var webrtc = new SimpleWebRTC({
+        localVideoEl: 'localVideo',
+        remoteVideosEl: 'remotesVideos'
+        //autoRequestMedia: true
+    });
+    $('#start').click(function(){
+        var idLekarza = document.getElementById('lekarze').value;
+        var room = Meteor.userId()+idLekarza;
+
+        if(idLekarza!=0){
+            webrtc.startLocalVideo();
+            webrtc.once('readyToCall', function (stream) {
+                webrtc.joinRoom(room);
+                document.getElementById('close').classList.remove('hidden');
+                document.getElementById('start').classList.add('hidden');
+            });
+        }else{
+            alert('Proszę wybrać lekarza');
+        }
+    });
+    $('#close').click(function(){
+        webrtc.leaveRoom();
+        webrtc.stopLocalVideo();
+        document.getElementById('close').classList.add('hidden');
+        document.getElementById('start').classList.remove('hidden');
+    });
+    webrtc.on('videoAdded', function (video, peer) {
+        console.log('video added', peer);
+        var remotes = document.getElementById('remotes');
+        if (remotes) {
+            var container = document.createElement('div');
+            container.className = 'videoContainer';
+            container.id = 'container_' + webrtc.getDomId(peer);
+            container.appendChild(video);
+
+            // suppress contextmenu
+            video.oncontextmenu = function () { return false; };
+
+            remotes.appendChild(container);
+        }
+    });
+    webrtc.on('videoRemoved', function (video, peer) {
+        var remotes = document.getElementById('remotes');
+        var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+        if (remotes && el) {
+            remotes.removeChild(el);
+        }
+    });
+
     setPrzychodnie();
     $('#przychodnie').selectpicker({
 
@@ -121,7 +173,6 @@ setDoktorzy =  function(specjalnosc){
 };
 
 setSpecjalnosci =  function(id){
-    console.log(id);
     var specjalnosci = document.getElementById('specjalnosci');
     Specjalnosci.find().forEach(function(specjalnosc){
         var lekarzeZeSpecjalnoscia = Uzytkownicy.find({'profile.id_specjalnosc':specjalnosc._id,'profile.id_klinika':id}).count();

@@ -1,8 +1,8 @@
 /**
- * Created by Dorian on 10.03.15.
+ * Created by Soflab on 2015-04-07.
  */
-Messages = new Meteor.Collection('messages');
-Messages.allow({
+Wiadomosci = new Meteor.Collection('wiadomosci');
+Wiadomosci.allow({
     insert:function(){
         if(Meteor.user())
             return true;

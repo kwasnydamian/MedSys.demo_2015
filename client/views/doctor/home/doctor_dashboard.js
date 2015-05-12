@@ -96,4 +96,3 @@ Template.wszystkieWizyty.rendered = function() {
     });
 };
 
-

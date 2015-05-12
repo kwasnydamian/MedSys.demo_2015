@@ -21,6 +21,20 @@ Template.leftNav.rendered=function(){
                 selector[i].style.color = "#999";
             }
             $(this).attr("style","color:white;");
-        })
+        });
+
+        var selector = document.getElementsByClassName('navLi');
+        for (var i = 0; i < selector.length; i++){
+            selector[i].style.color = "#999";
+        }
+        var path = window.location.pathname.substr(1);
+        if(path==""){
+            var element = document.getElementsByClassName('home');
+            element[0].style.color = "#fff";
+        }else{
+            var element = document.getElementsByClassName(path);
+            element[0].style.color = "#fff";
+        }
+
     });
 };

@@ -1,117 +1,113 @@
 <template name="addUserTemplate">
-        <div class="container">
-            <div class="col-md-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2 text-center">
-                        <h3>Dodawanie użytkownika</h3>
-                    </div>
+    <div class="col-md-12 col-xs-12">
+        <div class="page-header">
+            <h1><small>Dodawanie użytkownika</small></h1>
+        </div>
+    </div>
+    <form id="#addUserForm">
+        <br />
+        <div class="col-md-12 col-xs-12 input-group" id="LoginGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Login">Login</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Login" id="Login">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="LoginError" class="text-danger"></p>
                 </div>
             </div>
-            <form id="#addUserForm">
-                <br />
-                <div class="col-md-12 col-xs-12 input-group" id="LoginGroup">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Login">Login</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <input type="text" class="form-control" name="Login" id="Login">
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="LoginError" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-12 input-group" id="HasloGroup">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Haslo">Hasło</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <input type="password" class="form-control" name="Haslo" id="Haslo">
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="HasloError" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-12 input-group" id="Haslo2Group">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Haslo2">Powtórz hasło</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <input type="password" class="form-control" name="Haslo2" id="Haslo2">
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="Haslo2Error" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-12 input-group" id="EmailGroup">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Email">Email</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <input type="email" class="form-control" name="Email" id="Email">
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="EmailError" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-12 input-group" id="ImieGroup">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Imie">Imię</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <input type="text" class="form-control" name="Imie" id="Imie">
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="ImieError" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-12 input-group" id="NazwiskoGroup">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Nazwisko">Nazwisko</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <input type="text" class="form-control" name="Nazwisko" id="Nazwisko">
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="NazwiskoError" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-12 input-group" id="RolaGroup">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2">
-                            <label class="pull-right" for="Rola"> Rola</label>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            {{#each role}}
-                                <span>
-                                    <input type="radio" name="Rola" value="{{name}}"><span> {{name}}</span>
-                                </span>
-                            {{/each}}
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                            <p id="RolaError" class="text-danger"></p>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div class="col-md-12 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2">
-                            <input type="submit" id="save" class="pull-right btn btn-primary" value="Zapisz"/>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
+        <div class="col-md-12 col-xs-12 input-group" id="HasloGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Haslo">Hasło</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="password" class="form-control" name="Haslo" id="Haslo">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="HasloError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="Haslo2Group">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Haslo2">Powtórz hasło</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="password" class="form-control" name="Haslo2" id="Haslo2">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="Haslo2Error" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="EmailGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Email">Email</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="email" class="form-control" name="Email" id="Email">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="EmailError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="ImieGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Imie">Imię</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Imie" id="Imie">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="ImieError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="NazwiskoGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Nazwisko">Nazwisko</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" class="form-control" name="Nazwisko" id="Nazwisko">
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="NazwiskoError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 input-group" id="RolaGroup">
+            <div class="row">
+                <div class="col-md-2 col-xs-2">
+                    <label class="pull-right" for="Rola"> Rola</label>
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    {{#each role}}
+                        <span>
+                            <input type="radio" name="Rola" value="{{name}}"><span> {{name}}</span>
+                        </span>
+                    {{/each}}
+                </div>
+                <div class="col-md-5 col-xs-5">
+                    <p id="RolaError" class="text-danger"></p>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2">
+                    <input type="submit" id="save" class="pull-right btn btn-primary" value="Zapisz"/>
+                </div>
+            </div>
+        </div>
+    </form>
 </template>

@@ -1,7 +1,9 @@
 .container{
     width: auto;
-    padding-left: 3em;
-    /*padding-right: 0 !important;*/
+    margin-left: 2em;
+}
+.padding-left-1m{
+    padding-left: 1em;
 }
 .padding-5 {
     padding: 5px;
@@ -18,11 +20,15 @@
 .text-center{
     text-align: center;
 }
-/*#footer{*/
-    /*position:absolute;*/
-    /*bottom:0;*/
-    /*left:0;*/
-/*}*/
+.vertical-align-middle{
+    vertical-align: middle;
+}
+.text-online{
+    color:#63a924;
+}
+.text-offline{
+    color:#d4cece;
+}
 .grid-block, .main, .post, .comments li, .comment-form {
     background: #0079c1;
     border-radius: 3px;
@@ -46,11 +52,6 @@
     background: #ffffff;
     background-color: #2e6da4;
 }
-.btn-primary{
-    /*color: #fff;
-    background-color: #002f6b;
-    border-color: #2e6da4;*/
-}
 
 .container-fluid{
     background: #337ab7;
@@ -68,12 +69,10 @@ body {
     height:100%;
 }
 #wrapper {
-    min-height:100%;
+    min-height: 99.9%;
     position:relative;
-    /*padding-left:2em;*/
 }
 #headerMain {
-    /*background:#222;*/
     background:white;
 }
 #contentMain {
@@ -83,7 +82,6 @@ body {
 #patientCalendar{
     background: #ffffff;
     padding: 10px;
-    /*margin-bottom: 50px;*/
 }
 #doctorCalendar{
     background: #ffffff;
@@ -100,20 +98,21 @@ body {
 }
 .main{
     background:white !important;
-    /*padding-left: 50px;*/
     position: absolute;
     width: 100%;
     left: 0;
     top: 50px;
     right: 0;
     bottom: 0;
-    /*background-color: #fff;*/
     z-index: 0;
     -webkit-transform-origin: 0 50%;
     -moz-transform-origin: 0 50%;
     -ms-transform-origin: 0 50%;
     -o-transform-origin: 0 50%;
     transform-origin: 0 50%;
+}
+div.fc-time-grid-container{
+    height: auto !important;
 }
 div.row{
     padding-top: 10px;
@@ -468,4 +467,73 @@ table.fc-border-separate {
     border-color: #ddd;
     box-sizing: border-box;
     height: 55px;
+    margin-bottom:0;
+}
+.fc-toolbar h2{
+    font-size: large;
+    margin:7px;
+}
+
+.borderCustom{
+    border: 1px solid black;
+}
+
+.margin-left-right-5{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.embed-responsive.embed-responsive-16by9{
+    padding-bottom: 40%;
+}
+
+#autor{
+    padding-left: 10%;
+    /*padding-right: 40%;*/
+}
+#rozmowca{
+    /*padding-left: 40%;*/
+    padding-right: 10%;
+}
+
+.arrow_box_left {
+    position: relative;
+    background: #82d669;
+    border-radius: 8px;
+    padding: 5px;
+}
+.arrow_box_left:after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(130, 214, 105, 0);
+    border-right-color: #82d669;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.arrow_box_right {
+    position: relative;
+    background: #8dcbeb;
+    border-radius: 8px;
+    padding: 5px;
+}
+.arrow_box_right:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(71, 114, 214, 0);
+    border-left-color: #8dcbeb;
+    border-width: 6px;
+    margin-top: -6px;
 }

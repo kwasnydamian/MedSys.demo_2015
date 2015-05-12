@@ -2,7 +2,7 @@
     <div id="nav">
         <ul>
             <a href="{{pathFor 'home' }}">
-                <li class="navLi">
+                <li class="navLi home">
                     <span>Strona główna</span>
                     <span class="pull-right fa fa-home"></span>
                 </li>
@@ -13,19 +13,19 @@
                     <span class="pull-right fa fa-stethoscope"></span>
                 </div>
                 <a href="{{pathFor 'doctorCalendarTemplate' }}">
-                    <li class="navLi">
+                    <li class="navLi doctor_calendar">
                         <span>Terminarz</span>
                         <span class="pull-right fa fa-calendar"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'consultationTemplate' }}">
-                    <li class="navLi">
+                    <li class="navLi doctor_consultation">
                         <span>Konsultacje</span>
                         <span class="pull-right fa fa-wechat "></span>
                     </li>
                 </a>
                 <!--<a href="{{pathFor 'videoTemplate' }}">-->
-                <!--<li>-->
+                <!--<li class="navLi video">-->
                 <!--<span>Video</span>-->
                 <!--<span class="pull-right fa fa-video-camera"></span>-->
                 <!--</li>-->
@@ -38,13 +38,13 @@
                     <span class="pull-right fa fa-male"></span>
                 </div>
                 <a href="{{pathFor 'patientCalendarTemplate' }}">
-                    <li class="navLi">
+                    <li class="navLi patient_calendar">
                         <span>Terminarz</span>
                         <span class="pull-right fa fa-calendar"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'registerVisit' }}">
-                    <li class="navLi">
+                    <li class="navLi register_visit">
                         <span>Zarejestruj wizytę</span>
                         <span class="pull-right fa fa-heart"></span>
                     </li>
@@ -56,25 +56,25 @@
                     <span class="pull-right fa fa-star"></span>
                 </div>
                 <a href="{{pathFor 'adminTemplate' }}">
-                    <li class="navLi">
+                    <li class="navLi roles_manage">
                         <span>Zarządzanie rolami</span>
                         <span class="pull-right fa fa-magic"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'statsTemplate' }}">
-                    <li class="navLi">
+                    <li class="navLi admin_stats">
                         <span>Statystyki </span>
                         <span class="pull-right fa fa-line-chart"></span>
                     </li>
                 </a>
                 <a href="{{pathFor 'addUserTemplate'}}">
-                    <li class="navLi">
+                    <li class="navLi add_user">
                         <span>Dodaj użytkownika</span>
                         <span class="pull-right fa fa-user"></span>
                     </li>
                 </a>
                 <a href="#">
-                    <li class="navLi">
+                    <li class="navLi ">
                         <span>Ustawienia systemu</span>
                         <span class="pull-right fa fa-cogs"></span>
                     </li>

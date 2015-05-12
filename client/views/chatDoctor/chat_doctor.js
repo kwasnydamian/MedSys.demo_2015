@@ -6,24 +6,66 @@ Template.messagesDoctor.helpers({
     messagesDoctor: function() {
         var id = Session.get('idPacjenta');
         if(id!==0 && id!=="" && id!=="0" && id!=="undefined"){
-            return Messages.find({id_doctor:Meteor.userId(),id_patient:Session.get('idPacjenta')}, { sort: { time: 1}});
+            return Messages.find({id_doctor:Meteor.userId(),id_patient:Session.get('idPacjenta')});
         }else{
             return null;
         }
-      },
-    czyAutor: function(message){
-        //var mes = Messages.findOne({_id:message});
-        //var id = Meteor.userId();
-        //
-        //if(id==mes.owner){
-        //    return true;
-        //}
-        //else{
-        //    return false;
-        //}
-        return true;
+    },
+    displayMessage: function(id) {
+        if (id && id!="" && id!=undefined) {
+            var userID = Meteor.userId();
+            var lastMessageAuthorId = document.getElementById("lastOwner").value;
+            var message = Messages.findOne({_id: id});
+
+            var div = document.createElement("div");
+            var p = document.createElement("p");
+            var text = document.createTextNode(message.message);
+            p.setAttribute("name","destination");
+
+            if (lastMessageAuthorId != "" && lastMessageAuthorId != undefined) {
+                if (lastMessageAuthorId == message.owner) { // jeśli właściciel ostatniego elementu czatu i właścicel aktualnej wiadomości to ta sama osoba
+                    var destination = document.getElementsByName("destination");
+                    destination[destination.length-1].innerHTML += "<br />"+message.message;
+                }
+                else{
+                    if (userID == message.owner) {
+                        div.id = "autor";
+                        p.classList.add("arrow_box_left");
+                        p.title = message.time;
+                    }
+                    else {
+                        div.id = "rozmowca";
+                        p.classList.add("arrow_box_right");
+                        p.title = message.time;
+                    }
+                    div.appendChild(p);
+                    p.appendChild(text);
+                    document.getElementById("wiadomosci").appendChild(div);
+                    document.getElementById("lastOwner").value = message.owner;
+                }
+            }
+            else {
+                if (userID == message.owner) {
+                    div.id = "autor";
+                    p.classList.add("arrow_box_left");
+                    p.title = message.time;
+                }
+                else {
+                    div.id = "rozmowca";
+                    p.classList.add("arrow_box_right");
+                    p.title = message.time;
+                }
+
+                div.appendChild(p);
+                p.appendChild(text);
+                document.getElementById("wiadomosci").appendChild(div);
+                document.getElementById("lastOwner").value = message.owner;
+            }
+
+            $('.chatDoctor').scrollTop($('.chatDoctor')[0].scrollHeight);
+        }
     }
-})
+});
 
 Template.inputDoctor.events = {
     'keydown input#message' : function (event) {
@@ -53,12 +95,105 @@ Template.inputDoctor.events = {
 }
 
 Template.chatDoctor.rendered = function(){
+    document.getElementById('close').classList.add('hidden');
+    document.getElementById("start").classList.add("hidden");
+    var webrtc = new SimpleWebRTC({
+        localVideoEl: 'localVideo',
+        remoteVideosEl: 'remotesVideos'
+    });
+
+    $('#start').click(function(){
+        var idPacjenta = document.getElementById('pacjenci').value;
+        var room = idPacjenta+Meteor.userId();
+
+        if(idPacjenta!=0){
+            webrtc.startLocalVideo();
+            webrtc.once('readyToCall', function (stream) {
+                webrtc.joinRoom(room);
+                document.getElementById('close').classList.remove('hidden');
+                document.getElementById('start').classList.add('hidden');
+            });
+        }else{
+            alert('Proszę wybrać pacjenta');
+        }
+    });
+    $('#close').click(function(){
+        webrtc.leaveRoom();
+        webrtc.stopLocalVideo();
+        document.getElementById('close').classList.add('hidden');
+        document.getElementById("start").classList.remove("hidden");
+        document.getElementById('localVideo').innerHTML="";
+    });
+    webrtc.on('videoAdded', function (video, peer) {
+        console.log('video added', peer);
+        var remotes = document.getElementById('remotes');
+        if (remotes) {
+            var container = document.createElement('div');
+            container.className = 'embed-responsive-item ';
+            container.id = 'container_' + webrtc.getDomId(peer);
+            container.appendChild(video);
+
+            // suppress contextmenu
+            video.oncontextmenu = function () { return false; };
+
+            remotes.appendChild(container);
+        }
+        if (peer && peer.pc) {
+            var connstate = document.createElement('div');
+            connstate.className = 'connectionstate';
+            container.appendChild(connstate);
+            peer.pc.on('iceConnectionStateChange', function (event) {
+                switch (peer.pc.iceConnectionState) {
+                    case 'checking':
+                        connstate.innerText = 'Łączenie...';
+                        break;
+                    case 'connected':
+                    case 'completed': // on caller side
+                        connstate.innerText = 'Połączenie ustanowione.';
+                        break;
+                    case 'disconnected':
+                        connstate.innerText = 'Rozłączony.';
+                        break;
+                    case 'failed':
+                        break;
+                    case 'closed':
+                        connstate.innerText = 'Połączenie zamknięte.';
+                        break;
+                }
+            });
+        }
+    });
+    webrtc.on('videoRemoved', function (video, peer) {
+        console.log('video removed ', peer);
+        var remotes = document.getElementById('remotes');
+        var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+        if (remotes && el) {
+            remotes.removeChild(el);
+        }
+    });
+    webrtc.on('createdPeer', function (peer) {
+        console.log('createdPeer', peer);
+        var fileinput = document.createElement('input');
+        fileinput.type = 'file';
+        peer.on('fileTransfer', function (metadata, receiver) {
+            console.log('incoming filetransfer', metadata.name, metadata);
+            receiver.on('progress', function (bytesReceived) {
+                console.log('receive progress', bytesReceived, 'out of', metadata.size);
+            });
+            // get notified when file is done
+            receiver.on('receivedFile', function (file, metadata) {
+                console.log('received file', metadata.name, metadata.size);
+
+                // close the channel
+                receiver.channel.close();
+            });
+            filelist.appendChild(item);
+        });
+    });
     setPacjent();
     $('#pacjenci').selectpicker({
-        //style:'btn-info',
         size:3
     });
-    //setPacjent();
 };
 
 Template.chatDoctor.helpers({
@@ -79,12 +214,12 @@ Template.chatDoctor.helpers({
 });
 
 Template.chatDoctor.events({
-    'change #pacjenci': function(){
+    'change #pacjenci': function(e){
+        document.getElementById("wiadomosci").innerHTML="";
         var idPacjenta = document.getElementById('pacjenci').value;
         Session.set('idPacjenta',idPacjenta);
-    },
-    'click #pollsModalButton':function(){
-
+        document.getElementById("start").classList.remove("hidden");
+        document.getElementById("lastOwner").value = "0";
     },
     'click .pollItem':function(event){
         var target = event.currentTarget;
@@ -135,4 +270,4 @@ Template.pollsModalTemplate.events({
             alert("Błąd");
         }
     }
-})
+});

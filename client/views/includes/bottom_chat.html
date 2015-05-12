@@ -1,0 +1,33 @@
+<template name="bottomChat">
+    <div id="chat-users-container" class="chat-users-container">
+        {{#each activeChatItems}}
+            {{> Template.dynamic template="itemChat" data=this}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="itemChat">
+    {{#with userChat this}}
+        <div class="chat-user-item">
+            <div class="item-header" id="{{_id}}">
+                {{profile.lastName}} {{profile.firstName}}
+                <i id="close-chat-item" class="pull-right fa fa-close"></i>
+            </div>
+            <input type="hidden" id="last-owner" value="0">
+            <div class="item-content" id="item-content">
+                {{#each wiadomosci _id}}
+                    {{#if isAuthor _id}}
+                        <div class="autor-div">{{message}}</div>
+                    {{else}}
+                        <div class="rozmowca-div">{{message}}</div>
+                    {{/if}}
+                {{/each}}
+            </div>
+            <div class="item-footer">
+                <div id="{{_id}}">
+                    <input type="text" class="chat-input" name="wiadomosc" id="wiadomosc" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    {{/with}}
+</template>
