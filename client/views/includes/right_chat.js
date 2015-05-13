@@ -3,7 +3,10 @@
  */
 Template.rightChat.helpers({
     onlineUsers:function(){
+        if(Meteor.user().roles == "doctor")
         return Uzytkownicy.find({_id:{$ne:Meteor.userId()}});
+        else if(Meteor.user().roles == "patient")
+        return Uzytkownicy.find({_id:{$ne:Meteor.userId()}, 'profile.isDoctor': true, 'status.online': true});
     }
 });
 Template.rightChat.events({
